@@ -37,20 +37,18 @@ function DashboardSidebar() {
               className="group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
             >
               <Link href="/dashboard">
-                {/* Expanded: icon + text */}
                 <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground group-data-[collapsible=icon]:hidden">
                   <RiFlashlightLine className="size-5" />
                 </span>
                 <span className="grid min-w-0 leading-tight group-data-[collapsible=icon]:hidden">
-                  <span className="truncate font-semibold">Nexion</span>
+                  <span className="truncate font-semibold">Atlas</span>
                   <span className="truncate text-xs text-sidebar-foreground/70">
-                    Workspace
+                    Poultry Finance
                   </span>
                 </span>
 
-                {/* Collapsed: just "N" */}
                 <span className="hidden size-10 items-center justify-center rounded-full bg-sidebar-primary text-lg font-black text-sidebar-primary-foreground group-data-[collapsible=icon]:flex">
-                  N
+                  A
                 </span>
               </Link>
             </SidebarMenuButton>

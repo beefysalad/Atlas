@@ -19,33 +19,33 @@ import { Cell, Pie, PieChart } from "recharts"
 
 const segmentData = [
   {
-    segment: "Enterprise",
+    segment: "Egg trays",
     value: 46,
-    fill: "var(--color-enterprise)",
+    fill: "var(--color-eggs)",
   },
   {
-    segment: "Growth",
+    segment: "Live broilers",
     value: 31,
-    fill: "var(--color-growth)",
+    fill: "var(--color-broilers)",
   },
   {
-    segment: "Starter",
+    segment: "Retail shop",
     value: 23,
-    fill: "var(--color-starter)",
+    fill: "var(--color-retail)",
   },
 ]
 
 const segmentChartConfig = {
-  enterprise: {
-    label: "Enterprise",
+  eggs: {
+    label: "Egg trays",
     color: "var(--chart-1)",
   },
-  growth: {
-    label: "Growth",
+  broilers: {
+    label: "Live broilers",
     color: "var(--chart-2)",
   },
-  starter: {
-    label: "Starter",
+  retail: {
+    label: "Retail shop",
     color: "var(--chart-5)",
   },
 } satisfies ChartConfig
@@ -54,9 +54,9 @@ export function DashboardSegmentChart() {
   return (
     <Card className="min-w-0 rounded-xl shadow-sm">
       <CardHeader>
-        <CardTitle className="text-lg">Customer Mix Donut</CardTitle>
+        <CardTitle className="text-lg">Revenue Mix</CardTitle>
         <CardDescription>
-          Active account share by subscription segment.
+          Share of this week&apos;s revenue by poultry line.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

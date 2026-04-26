@@ -9,7 +9,7 @@ import { DashboardSegmentChart } from "@/components/dashboard/dashboard-segment-
 import { DashboardStats } from "@/components/dashboard/dashboard-stats"
 import { DashboardUsageChart } from "@/components/dashboard/dashboard-usage-chart"
 import { useDashboardUser } from "@/components/dashboard/dashboard-user-provider"
-import { RecentUsersCard } from "@/components/dashboard/recent-users-card"
+import { FarmWatchCard } from "@/components/dashboard/farm-watch-card"
 
 function DashboardOverview() {
   const user = useDashboardUser()
@@ -33,19 +33,17 @@ function DashboardOverview() {
             {getGreeting()}, {user.name.split(" ")[0]}
           </h1>
           <p className="text-sm text-muted-foreground">
-            System status:{" "}
-            <span className="font-medium text-green-600 dark:text-green-400">
-              All systems operational
-            </span>
+            Today&apos;s poultry books are ready for sales, collections, and
+            supplier follow-up.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <Button variant="outline" size="sm" className="w-full sm:w-auto">
-            Download report
+            Export summary
           </Button>
           <Button size="sm" className="w-full sm:w-auto">
             <RiArrowRightLine data-icon="inline-start" className="rotate-180" />
-            Go to workspace
+            Open ledger
           </Button>
         </div>
       </section>
@@ -59,7 +57,7 @@ function DashboardOverview() {
         </div>
 
         <div className="min-w-0 space-y-6">
-          <RecentUsersCard />
+          <FarmWatchCard />
           <DashboardSegmentChart />
         </div>
       </div>

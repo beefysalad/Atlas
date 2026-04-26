@@ -36,9 +36,9 @@ export function DashboardGrowthChart() {
   return (
     <Card className="min-w-0 overflow-hidden rounded-xl shadow-sm">
       <CardHeader>
-        <CardTitle className="text-lg">Growth Trend</CardTitle>
+        <CardTitle className="text-lg">Margin Trend</CardTitle>
         <CardDescription>
-          Weekly active account expansion across the workspace.
+          Weekly gross margin after feed, meds, labor, and transport.
         </CardDescription>
       </CardHeader>
       <CardContent className="p-4">

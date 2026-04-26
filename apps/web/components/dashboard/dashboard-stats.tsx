@@ -15,21 +15,21 @@ import {
 const dashboardStats = [
   {
     icon: RiMoneyDollarCircleLine,
-    label: "Some fake stats 1",
-    value: "₱128,430.00",
+    label: "Today's sales",
+    value: "PHP 128,430",
     trend: "+14.2%",
   },
   {
     icon: RiBillLine,
-    label: "Some fake stats 2",
-    value: "₱12,340.50",
-    trend: "3 Overdue",
+    label: "Feed and supplies",
+    value: "PHP 42,180",
+    trend: "3 invoices due",
   },
   {
     icon: RiPieChartLine,
-    label: "Some fake stats 3",
-    value: "₱45,210.00",
-    trend: "+8.1%",
+    label: "Receivables open",
+    value: "PHP 64,210",
+    trend: "8 accounts",
   },
 ]
 

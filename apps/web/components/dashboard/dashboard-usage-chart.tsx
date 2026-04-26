@@ -32,9 +32,9 @@ export function DashboardUsageChart() {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-lg">Platform Revenue</CardTitle>
+            <CardTitle className="text-lg">Daily Cash In</CardTitle>
             <CardDescription>
-              Total accounting revenue across all synced accounts.
+              Sales posted from eggs, broilers, and dressed chicken deliveries.
             </CardDescription>
           </div>
           <div className="flex items-center gap-2">
