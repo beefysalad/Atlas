@@ -15,6 +15,13 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+export const metadata = {
+  title: "Atlas — Financial Management",
+  description:
+    "Atlas is the simple financial management platform that gives you a clear picture of where your money goes. Track costs, monitor performance, and make smarter decisions.",
+}
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
