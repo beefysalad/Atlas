@@ -1,4 +1,5 @@
 import {
+  RiArchiveLine,
   RiDashboardLine,
   RiLayoutGridLine,
   RiSettings3Line,
@@ -9,6 +10,11 @@ const dashboardNavItems = [
     href: "/dashboard",
     icon: RiDashboardLine,
     label: "Overview",
+  },
+  {
+    href: "/inventory",
+    icon: RiArchiveLine,
+    label: "Inventory",
   },
   {
     href: "/components",

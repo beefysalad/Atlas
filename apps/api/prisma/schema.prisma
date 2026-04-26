@@ -12,6 +12,31 @@ datasource db {
   provider = "postgresql"
 }
 
+enum InventoryUnit {
+  BAG
+  SACK
+  KILOGRAM
+  GRAM
+  LITER
+  MILLILITER
+  TRAY
+  PIECE
+  HEAD
+  CRATE
+  BOX
+}
+
+enum InventoryMovementType {
+  PURCHASE
+  PRODUCTION_IN
+  SALE_OUT
+  ADJUSTMENT_IN
+  ADJUSTMENT_OUT
+  SPOILAGE
+  TRANSFER_OUT
+  TRANSFER_IN
+}
+
 model User {
   id        String   @id @default(uuid())
   clerkId   String?  @unique
@@ -20,4 +45,37 @@ model User {
   imageUrl  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
+}
+
+model InventoryItem {
+  id              String               @id @default(uuid())
+  name            String
+  sku             String               @unique
+  category        String
+  unit            InventoryUnit
+  onHandQuantity  Decimal              @default(0) @db.Decimal(12, 2)
+  reorderPoint    Decimal              @default(0) @db.Decimal(12, 2)
+  unitCost        Decimal              @default(0) @db.Decimal(12, 2)
+  isActive        Boolean              @default(true)
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @default(now()) @updatedAt
+  movements       InventoryMovement[]
+
+  @@index([category])
+  @@index([isActive])
+}
+
+model InventoryMovement {
+  id               String                @id @default(uuid())
+  itemId           String
+  type             InventoryMovementType
+  quantity         Decimal               @db.Decimal(12, 2)
+  unitCostSnapshot Decimal?              @db.Decimal(12, 2)
+  notes            String?
+  reference        String?
+  createdAt        DateTime              @default(now())
+  item             InventoryItem         @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@index([itemId, createdAt])
+  @@index([type, createdAt])
 }

@@ -33,7 +33,7 @@ function DashboardSidebar() {
           <SidebarMenuItem className="group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center">
             <SidebarMenuButton
               asChild
-              tooltip="Nexion"
+              tooltip="Atlas"
               className="group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
             >
               <Link href="/dashboard">
@@ -43,7 +43,7 @@ function DashboardSidebar() {
                 <span className="grid min-w-0 leading-tight group-data-[collapsible=icon]:hidden">
                   <span className="truncate font-semibold">Atlas</span>
                   <span className="truncate text-xs text-sidebar-foreground/70">
-                    Poultry Finance
+                     Finance
                   </span>
                 </span>
 
@@ -64,8 +64,10 @@ function DashboardSidebar() {
               {dashboardNavItems.map((item, index) => {
                 const Icon = item.icon
                 const isActive =
-                  pathname === item.href &&
-                  (item.href !== "/dashboard" || index === 0)
+                  item.href === "/dashboard"
+                    ? pathname === item.href && index === 0
+                    : pathname === item.href ||
+                      pathname.startsWith(`${item.href}/`)
 
                 return (
                   <SidebarMenuItem

@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Fragment } from "react"
 
-import { dashboardNavItems } from "@/components/dashboard/dashboard-data"
+import { getDashboardBreadcrumbSegments } from "@/components/dashboard/dashboard-breadcrumbs"
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
 import {
   Breadcrumb,
@@ -26,9 +27,7 @@ type DashboardShellProps = {
 
 function DashboardShell({ children }: DashboardShellProps) {
   const pathname = usePathname()
-  const currentItem =
-    dashboardNavItems.find((item) => item.href === pathname) ??
-    dashboardNavItems[0]
+  const breadcrumbSegments = getDashboardBreadcrumbSegments(pathname)
 
   return (
     <TooltipProvider>
@@ -45,12 +44,26 @@ function DashboardShell({ children }: DashboardShellProps) {
                     <Link href="/dashboard">Workspace</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden sm:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage className="truncate">
-                    {currentItem?.label ?? "Overview"}
-                  </BreadcrumbPage>
-                </BreadcrumbItem>
+                {breadcrumbSegments.map((segment, index) => {
+                  const isLast = index === breadcrumbSegments.length - 1
+
+                  return (
+                    <Fragment key={segment.href}>
+                      <BreadcrumbSeparator className="hidden sm:block" />
+                      <BreadcrumbItem>
+                        {isLast ? (
+                          <BreadcrumbPage className="truncate">
+                            {segment.label}
+                          </BreadcrumbPage>
+                        ) : (
+                          <BreadcrumbLink asChild>
+                            <Link href={segment.href}>{segment.label}</Link>
+                          </BreadcrumbLink>
+                        )}
+                      </BreadcrumbItem>
+                    </Fragment>
+                  )
+                })}
               </BreadcrumbList>
             </Breadcrumb>
           </header>

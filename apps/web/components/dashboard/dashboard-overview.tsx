@@ -33,7 +33,7 @@ function DashboardOverview() {
             {getGreeting()}, {user.name.split(" ")[0]}
           </h1>
           <p className="text-sm text-muted-foreground">
-            Today&apos;s poultry books are ready for sales, collections, and
+            Today&apos;s  books are ready for sales, collections, and
             supplier follow-up.
           </p>
         </div>

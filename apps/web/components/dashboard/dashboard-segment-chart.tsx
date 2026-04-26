@@ -56,7 +56,7 @@ export function DashboardSegmentChart() {
       <CardHeader>
         <CardTitle className="text-lg">Revenue Mix</CardTitle>
         <CardDescription>
-          Share of this week&apos;s revenue by poultry line.
+          Share of this week&apos;s revenue by  line.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
