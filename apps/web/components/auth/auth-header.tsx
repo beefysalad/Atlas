@@ -2,6 +2,7 @@
 
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
 
+import { ThemeModeToggle } from "@/components/theme/theme-mode-toggle"
 import { Button } from "@workspace/ui/components/button"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -24,6 +25,7 @@ function AuthHeader() {
         </Link>
         <div className="flex items-center gap-2">
           <Show when="signed-out">
+            <ThemeModeToggle className="size-9" />
             <SignInButton mode="modal" fallbackRedirectUrl="/dashboard">
               <Button variant="ghost" size="sm">
                 Sign in
@@ -37,6 +39,7 @@ function AuthHeader() {
             <Button asChild variant="ghost" size="sm">
               <Link href="/dashboard">Dashboard</Link>
             </Button>
+            <ThemeModeToggle className="size-9" />
             <UserButton />
           </Show>
         </div>

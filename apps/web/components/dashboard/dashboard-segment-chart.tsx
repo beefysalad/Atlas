@@ -17,6 +17,8 @@ import {
 } from "@workspace/ui/components/chart"
 import { Cell, Pie, PieChart } from "recharts"
 
+import { SampleDataBadge } from "@/components/dashboard/dashboard-placeholder-indicator"
+
 const segmentData = [
   {
     segment: "Egg trays",
@@ -54,10 +56,15 @@ export function DashboardSegmentChart() {
   return (
     <Card className="min-w-0 rounded-xl shadow-sm">
       <CardHeader>
-        <CardTitle className="text-lg">Revenue Mix</CardTitle>
-        <CardDescription>
-          Share of this week&apos;s revenue by line.
-        </CardDescription>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <CardTitle className="text-lg">Revenue Mix</CardTitle>
+            <CardDescription>
+              Share of this week&apos;s revenue by line.
+            </CardDescription>
+          </div>
+          <SampleDataBadge />
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <ChartContainer

@@ -12,6 +12,8 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card"
 
+import { SampleDataBadge } from "@/components/dashboard/dashboard-placeholder-indicator"
+
 const dashboardStats = [
   {
     icon: RiMoneyDollarCircleLine,
@@ -42,10 +44,13 @@ export function DashboardStats() {
         return (
           <Card key={stat.label} className="bg-card rounded-xl shadow-sm">
             <CardHeader className="pb-2">
-              <CardTitle className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
-                <Icon className="size-3.5" />
-                {stat.label}
-              </CardTitle>
+              <div className="flex items-start justify-between gap-3">
+                <CardTitle className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
+                  <Icon className="size-3.5" />
+                  {stat.label}
+                </CardTitle>
+                <SampleDataBadge />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="flex items-baseline justify-between">

@@ -15,6 +15,8 @@ import {
 } from "@workspace/ui/components/chart"
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
 
+import { SampleDataBadge } from "@/components/dashboard/dashboard-placeholder-indicator"
+
 const growthData = [
   { week: "W1", growth: 14 },
   { week: "W2", growth: 19 },
@@ -36,10 +38,15 @@ export function DashboardGrowthChart() {
   return (
     <Card className="min-w-0 overflow-hidden rounded-xl shadow-sm">
       <CardHeader>
-        <CardTitle className="text-lg">Margin Trend</CardTitle>
-        <CardDescription>
-          Weekly gross margin after feed, meds, labor, and transport.
-        </CardDescription>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <CardTitle className="text-lg">Margin Trend</CardTitle>
+            <CardDescription>
+              Weekly gross margin after feed, meds, labor, and transport.
+            </CardDescription>
+          </div>
+          <SampleDataBadge />
+        </div>
       </CardHeader>
       <CardContent className="p-4">
         <ChartContainer
