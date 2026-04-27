@@ -4,6 +4,7 @@ import Link from "next/link"
 import { RiAddLine } from "@remixicon/react"
 
 import { InventoryMovements } from "@/components/inventory/inventory-movements"
+import { InventoryOverviewInsights } from "@/components/inventory/inventory-overview-insights"
 import { InventoryPageHeader } from "@/components/inventory/inventory-page-header"
 import { InventorySummary } from "@/components/inventory/inventory-summary"
 import { InventoryTable } from "@/components/inventory/inventory-table"
@@ -26,8 +27,8 @@ export function InventoryPage() {
 
   const items = itemsData?.items ?? []
   const movements = movementsData?.movements ?? []
-  const previewItems = items.slice(0, 10)
-  const previewMovements = movements.slice(0, 10)
+  const previewItems = items.slice(0, 5)
+  const previewMovements = movements.slice(0, 5)
   const isLoading = itemsPending || movementsPending
 
   return (
@@ -59,6 +60,11 @@ export function InventoryPage() {
         items={items}
         movements={movements}
         isLoading={isLoading}
+      />
+
+      <InventoryOverviewInsights
+        items={items}
+        isLoading={itemsPending}
       />
 
       {/* Items table */}

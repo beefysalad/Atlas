@@ -19,21 +19,51 @@ export class UsersRepository {
   async upsertClerkUser(
     input: UpsertClerkUserInput,
   ): Promise<CurrentUserResponse> {
-    const user = await this.prisma.db.user.upsert({
+    const existingByClerkId = await this.prisma.db.user.findUnique({
       where: {
         clerkId: input.clerkId,
       },
-      update: input,
-      create: input,
     });
+
+    const user = existingByClerkId
+      ? await this.prisma.db.user.update({
+          where: {
+            id: existingByClerkId.id,
+          },
+          data: input,
+        })
+      : await this.upsertClerkUserByEmail(input);
 
     return {
       id: user.id,
-      clerkId: input.clerkId,
+      clerkId: user.clerkId!,
       email: user.email,
       name: user.name,
       imageUrl: user.imageUrl,
     };
+  }
+
+  private async upsertClerkUserByEmail(
+    input: UpsertClerkUserInput,
+  ) {
+    const existingByEmail = await this.prisma.db.user.findUnique({
+      where: {
+        email: input.email,
+      },
+    });
+
+    if (existingByEmail) {
+      return await this.prisma.db.user.update({
+        where: {
+          id: existingByEmail.id,
+        },
+        data: input,
+      });
+    }
+
+    return await this.prisma.db.user.create({
+      data: input,
+    });
   }
 
   async deleteByClerkId(clerkId: string): Promise<void> {
