@@ -100,7 +100,7 @@ export function InventoryTable({
 
   if (activeItems.length === 0) {
     return (
-      <Empty className="border-border border border-dashed py-16">
+      <Empty className="border border-dashed border-border py-16">
         <EmptyHeader>
           <EmptyMedia variant="icon">
             <RiArchiveLine />
@@ -125,12 +125,12 @@ export function InventoryTable({
           return (
             <div
               key={item.id}
-              className="bg-background rounded-xl border p-4 shadow-sm"
+              className="rounded-xl border bg-background p-4 shadow-sm"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium">{item.name}</p>
-                  <p className="text-muted-foreground mt-1 font-mono text-xs">
+                  <p className="mt-1 font-mono text-xs text-muted-foreground">
                     {item.sku}
                   </p>
                 </div>
@@ -145,26 +145,26 @@ export function InventoryTable({
               <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
                 <div>
                   <p className="text-muted-foreground">Category</p>
-                  <p className="text-foreground mt-1 truncate">
+                  <p className="mt-1 truncate text-foreground">
                     {item.category}
                   </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">On hand</p>
-                  <p className="text-foreground mt-1 tabular-nums">
-                    {item.onHandQuantity.toLocaleString()}{" "}
+                  <p className="mt-1 text-foreground tabular-nums">
+                    {item.onHandQuantity.toLocaleString("en-PH")}{" "}
                     {UNIT_LABELS[item.unit]}
                   </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Reorder point</p>
-                  <p className="text-foreground mt-1 tabular-nums">
+                  <p className="mt-1 text-foreground tabular-nums">
                     {item.reorderPoint.toLocaleString()}
                   </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Stock value</p>
-                  <p className="text-foreground mt-1 font-medium tabular-nums">
+                  <p className="mt-1 font-medium text-foreground tabular-nums">
                     {formatCurrency(value)}
                   </p>
                 </div>
@@ -180,7 +180,7 @@ export function InventoryTable({
         })}
       </div>
 
-      <div className="border-border hidden overflow-x-auto rounded-xl border md:block">
+      <div className="hidden overflow-x-auto rounded-xl border border-border md:block">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/40 hover:bg-muted/40">
@@ -206,19 +206,19 @@ export function InventoryTable({
               return (
                 <TableRow key={item.id} className="text-sm">
                   <TableCell className="font-medium">{item.name}</TableCell>
-                  <TableCell className="text-muted-foreground font-mono text-xs">
+                  <TableCell className="font-mono text-xs text-muted-foreground">
                     {item.sku}
                   </TableCell>
-                  <TableCell className="text-muted-foreground text-xs">
+                  <TableCell className="text-xs text-muted-foreground">
                     {item.category}
                   </TableCell>
                   <TableCell className="text-right tabular-nums">
-                    {item.onHandQuantity.toLocaleString()}{" "}
-                    <span className="text-muted-foreground text-xs">
+                    {item.onHandQuantity.toLocaleString("en-PH")}{" "}
+                    <span className="text-xs text-muted-foreground">
                       {UNIT_LABELS[item.unit]}
                     </span>
                   </TableCell>
-                  <TableCell className="text-muted-foreground text-right text-xs tabular-nums">
+                  <TableCell className="text-right text-xs text-muted-foreground tabular-nums">
                     {item.reorderPoint.toLocaleString()}
                   </TableCell>
                   <TableCell className="text-right text-xs tabular-nums">
