@@ -98,7 +98,7 @@ export function InventorySummary({
         {Array.from({ length: 4 }).map((_, i) => (
           <Card
             key={i}
-            className="bg-muted/30 rounded-xl border-none shadow-sm"
+            className="rounded-xl bg-card shadow-sm"
           >
             <CardHeader className="pb-2">
               <Skeleton className="h-3 w-24" />
@@ -125,14 +125,14 @@ export function InventorySummary({
         return (
           <Card
             key={card.key}
-            className="bg-muted/30 rounded-xl border-none shadow-sm"
+            className="rounded-xl bg-card shadow-sm"
           >
             <CardHeader className="pb-3">
               <CardTitle className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
                 <span
                   className={`flex size-7 items-center justify-center rounded-full ${
                     showAlert
-                      ? "bg-amber-500/12 text-amber-500"
+                      ? "bg-red-500/12 text-red-500"
                       : "bg-primary/12 text-primary"
                   }`}
                 >
@@ -145,7 +145,7 @@ export function InventorySummary({
               <div className="space-y-2">
                 <p
                   className={`text-3xl font-black tracking-tight ${
-                    showAlert ? "text-amber-500" : "text-foreground"
+                    showAlert ? "text-red-500" : "text-foreground"
                   }`}
                 >
                   {value}
@@ -153,16 +153,14 @@ export function InventorySummary({
               </div>
               <div className="border-border/60 mt-auto flex items-center justify-between gap-3 border-t pt-3">
                 <span
-                  className={`text-xs font-medium ${
-                    showAlert ? "text-amber-600 dark:text-amber-400" : "text-primary"
-                  }`}
+                  className="text-foreground text-xs font-medium"
                 >
                   {sub}
                 </span>
                 <span
                   className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
                     showAlert
-                      ? "bg-amber-500/12 text-amber-600 dark:text-amber-400"
+                      ? "bg-red-500/12 text-red-600 dark:text-red-400"
                       : "bg-primary/10 text-primary"
                   }`}
                 >

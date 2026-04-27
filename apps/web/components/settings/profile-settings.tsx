@@ -144,7 +144,7 @@ function ProfileSettings() {
           </CardHeader>
           <CardContent>
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-              <div className="bg-muted/30 flex flex-col gap-4 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="bg-card flex flex-col gap-4 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-4">
                   <Avatar className="size-16" size="lg">
                     {dashboardUser.imageUrl ? (
@@ -258,7 +258,7 @@ function ProfileSettings() {
       </div>
 
       <div className="space-y-6">
-        <Card className="bg-muted/30">
+        <Card>
           <CardHeader>
             <CardTitle className="text-base">Account ownership</CardTitle>
             <CardDescription>

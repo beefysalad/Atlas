@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { RiAddLine } from "@remixicon/react"
 
+import { InventoryListShell } from "@/components/inventory/inventory-list-shell"
 import { InventoryMovements } from "@/components/inventory/inventory-movements"
 import { InventoryPagination } from "@/components/inventory/inventory-pagination"
 import { InventoryPageHeader } from "@/components/inventory/inventory-page-header"
@@ -33,6 +34,12 @@ export function InventoryMovementsPage() {
   const movements = movementsData?.movements ?? []
   const totalPages = movementsData?.pagination.totalPages ?? 1
   const totalItems = movementsData?.pagination.totalItems ?? 0
+  const startItem =
+    totalItems === 0 ? 0 : (currentPage - 1) * MOVEMENTS_PAGE_SIZE + 1
+  const endItem =
+    totalItems === 0
+      ? 0
+      : Math.min(currentPage * MOVEMENTS_PAGE_SIZE, totalItems)
 
   useEffect(() => {
     if (!movementsData?.pagination) {
@@ -57,15 +64,25 @@ export function InventoryMovementsPage() {
         }
       />
 
-      <section className="space-y-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-foreground text-sm font-semibold">
-            Recent movements
-          </h2>
-          <span className="text-muted-foreground text-xs">
-            {totalItems} total entries
-          </span>
-        </div>
+      <section>
+        <InventoryListShell
+          title="Recent movements"
+          description={
+            totalItems > 0
+              ? `Showing ${startItem}-${endItem} of ${totalItems} stock entries across receipts, usage, transfers, and adjustments.`
+              : "No stock entries recorded yet."
+          }
+          pageLabel={`Page ${currentPage} of ${totalPages}`}
+          footer={
+            <InventoryPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalItems={totalItems}
+              pageSize={MOVEMENTS_PAGE_SIZE}
+              onPageChange={setCurrentPage}
+            />
+          }
+        >
         <InventoryMovements
           movements={movements}
           items={items}
@@ -73,13 +90,7 @@ export function InventoryMovementsPage() {
           isError={itemsError || movementsError}
           showActions
         />
-        <InventoryPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          totalItems={totalItems}
-          pageSize={MOVEMENTS_PAGE_SIZE}
-          onPageChange={setCurrentPage}
-        />
+        </InventoryListShell>
       </section>
     </main>
   )

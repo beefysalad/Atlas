@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation"
 import { Fragment } from "react"
 
 import { getDashboardBreadcrumbSegments } from "@/components/dashboard/dashboard-breadcrumbs"
-import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar"
+import { DashboardMobileNav } from "@/components/dashboard/dashboard-mobile-nav"
+import { DashboardTopNav } from "@/components/dashboard/dashboard-top-nav"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,11 +15,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@workspace/ui/components/breadcrumb"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@workspace/ui/components/sidebar"
 import { TooltipProvider } from "@workspace/ui/components/tooltip"
 
 type DashboardShellProps = {
@@ -31,15 +27,22 @@ function DashboardShell({ children }: DashboardShellProps) {
 
   return (
     <TooltipProvider>
-      <SidebarProvider>
-        <DashboardSidebar />
-        <SidebarInset className="min-w-0 overflow-x-hidden">
-          <header className="flex h-14 shrink-0 items-center gap-3 overflow-hidden border-b px-4">
-            <SidebarTrigger />
-            <div
-              aria-hidden="true"
-              className="bg-border my-auto h-4 w-px shrink-0"
-            />
+      <div className="flex min-h-screen flex-col bg-[#e6e7e9] dark:bg-background">
+        <div className="lg:hidden">
+          <div className="flex min-h-16 items-center justify-between gap-4 border-b bg-background px-4">
+            <Link href="/dashboard" className="text-2xl font-semibold tracking-tight text-foreground">
+              atlas
+            </Link>
+            <DashboardMobileNav />
+          </div>
+        </div>
+
+        <div className="hidden lg:block">
+          <DashboardTopNav />
+        </div>
+
+        <header className="border-b bg-background">
+          <div className="flex min-h-12 items-center overflow-x-auto px-4 md:min-h-14 md:px-6">
             <Breadcrumb className="min-w-0 overflow-hidden">
               <BreadcrumbList>
                 <BreadcrumbItem>
@@ -69,10 +72,13 @@ function DashboardShell({ children }: DashboardShellProps) {
                 })}
               </BreadcrumbList>
             </Breadcrumb>
-          </header>
+          </div>
+        </header>
+
+        <main className="min-w-0 flex-1 overflow-x-hidden bg-[#e6e7e9] dark:bg-background">
           {children}
-        </SidebarInset>
-      </SidebarProvider>
+        </main>
+      </div>
     </TooltipProvider>
   )
 }

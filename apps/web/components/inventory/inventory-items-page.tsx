@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { RiAddLine } from "@remixicon/react"
 
+import { InventoryListShell } from "@/components/inventory/inventory-list-shell"
 import { InventoryPagination } from "@/components/inventory/inventory-pagination"
 import { InventoryPageHeader } from "@/components/inventory/inventory-page-header"
 import { InventoryTable } from "@/components/inventory/inventory-table"
@@ -22,6 +23,8 @@ export function InventoryItemsPage() {
   const items = data?.items ?? []
   const totalPages = data?.pagination.totalPages ?? 1
   const totalItems = data?.pagination.totalItems ?? 0
+  const startItem = totalItems === 0 ? 0 : (currentPage - 1) * ITEMS_PAGE_SIZE + 1
+  const endItem = totalItems === 0 ? 0 : Math.min(currentPage * ITEMS_PAGE_SIZE, totalItems)
 
   useEffect(() => {
     if (!data?.pagination) {
@@ -46,28 +49,32 @@ export function InventoryItemsPage() {
         }
       />
 
-      <section className="space-y-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-foreground text-sm font-semibold">
-            Stock on hand
-          </h2>
-          <span className="text-muted-foreground text-xs">
-            {totalItems} total SKUs
-          </span>
-        </div>
+      <section>
+        <InventoryListShell
+          title="Stock on hand"
+          description={
+            totalItems > 0
+              ? `Showing ${startItem}-${endItem} of ${totalItems} tracked items across your inventory records.`
+              : "No tracked items yet."
+          }
+          pageLabel={`Page ${currentPage} of ${totalPages}`}
+          footer={
+            <InventoryPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalItems={totalItems}
+              pageSize={ITEMS_PAGE_SIZE}
+              onPageChange={setCurrentPage}
+            />
+          }
+        >
         <InventoryTable
           items={items}
           isLoading={isPending}
           isError={isError}
           showActions
         />
-        <InventoryPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          totalItems={totalItems}
-          pageSize={ITEMS_PAGE_SIZE}
-          onPageChange={setCurrentPage}
-        />
+        </InventoryListShell>
       </section>
     </main>
   )

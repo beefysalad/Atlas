@@ -116,71 +116,133 @@ export function InventoryTable({
   }
 
   return (
-    <div className="border-border overflow-x-auto rounded-xl border">
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-muted/40 hover:bg-muted/40">
-            <TableHead className="w-[180px] text-xs">Item</TableHead>
-            <TableHead className="text-xs">SKU</TableHead>
-            <TableHead className="text-xs">Category</TableHead>
-            <TableHead className="text-right text-xs">On Hand</TableHead>
-            <TableHead className="text-right text-xs">Reorder Pt.</TableHead>
-            <TableHead className="text-right text-xs">Unit Cost</TableHead>
-            <TableHead className="text-right text-xs">Stock Value</TableHead>
-            <TableHead className="text-xs">Status</TableHead>
-            {showActions ? (
-              <TableHead className="w-[88px] text-right text-xs">
-                Actions
-              </TableHead>
-            ) : null}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {activeItems.map((item) => {
-            const status = stockStatus(item)
-            const value = item.onHandQuantity * item.unitCost
-            return (
-              <TableRow key={item.id} className="text-sm">
-                <TableCell className="font-medium">{item.name}</TableCell>
-                <TableCell className="text-muted-foreground font-mono text-xs">
-                  {item.sku}
-                </TableCell>
-                <TableCell className="text-muted-foreground text-xs">
-                  {item.category}
-                </TableCell>
-                <TableCell className="text-right tabular-nums">
-                  {item.onHandQuantity.toLocaleString()}{" "}
-                  <span className="text-muted-foreground text-xs">
-                    {UNIT_LABELS[item.unit]}
-                  </span>
-                </TableCell>
-                <TableCell className="text-muted-foreground text-right text-xs tabular-nums">
-                  {item.reorderPoint.toLocaleString()}
-                </TableCell>
-                <TableCell className="text-right text-xs tabular-nums">
-                  {formatCurrency(item.unitCost)}
-                </TableCell>
-                <TableCell className="text-right text-xs font-medium tabular-nums">
-                  {formatCurrency(value)}
-                </TableCell>
-                <TableCell>
-                  <Badge
-                    variant={status.variant}
-                    className={`text-[10px] ${status.className}`}
-                  >
-                    {status.label}
-                  </Badge>
-                </TableCell>
-                {showActions ? (
-                  <TableCell className="text-right">
-                    <InventoryItemActions item={item} />
+    <>
+      <div className="space-y-3 md:hidden">
+        {activeItems.map((item) => {
+          const status = stockStatus(item)
+          const value = item.onHandQuantity * item.unitCost
+
+          return (
+            <div
+              key={item.id}
+              className="bg-background rounded-xl border p-4 shadow-sm"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-medium">{item.name}</p>
+                  <p className="text-muted-foreground mt-1 font-mono text-xs">
+                    {item.sku}
+                  </p>
+                </div>
+                <Badge
+                  variant={status.variant}
+                  className={`shrink-0 text-[10px] ${status.className}`}
+                >
+                  {status.label}
+                </Badge>
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
+                <div>
+                  <p className="text-muted-foreground">Category</p>
+                  <p className="mt-1 truncate text-foreground">{item.category}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">On hand</p>
+                  <p className="mt-1 text-foreground tabular-nums">
+                    {item.onHandQuantity.toLocaleString()} {UNIT_LABELS[item.unit]}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Reorder point</p>
+                  <p className="mt-1 text-foreground tabular-nums">
+                    {item.reorderPoint.toLocaleString()}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Stock value</p>
+                  <p className="mt-1 font-medium text-foreground tabular-nums">
+                    {formatCurrency(value)}
+                  </p>
+                </div>
+              </div>
+
+              {showActions ? (
+                <div className="mt-4 flex justify-end">
+                  <InventoryItemActions item={item} />
+                </div>
+              ) : null}
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="border-border hidden overflow-x-auto rounded-xl border md:block">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-muted/40 hover:bg-muted/40">
+              <TableHead className="w-[180px] text-xs">Item</TableHead>
+              <TableHead className="text-xs">SKU</TableHead>
+              <TableHead className="text-xs">Category</TableHead>
+              <TableHead className="text-right text-xs">On Hand</TableHead>
+              <TableHead className="text-right text-xs">Reorder Pt.</TableHead>
+              <TableHead className="text-right text-xs">Unit Cost</TableHead>
+              <TableHead className="text-right text-xs">Stock Value</TableHead>
+              <TableHead className="text-xs">Status</TableHead>
+              {showActions ? (
+                <TableHead className="w-[88px] text-right text-xs">
+                  Actions
+                </TableHead>
+              ) : null}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {activeItems.map((item) => {
+              const status = stockStatus(item)
+              const value = item.onHandQuantity * item.unitCost
+              return (
+                <TableRow key={item.id} className="text-sm">
+                  <TableCell className="font-medium">{item.name}</TableCell>
+                  <TableCell className="text-muted-foreground font-mono text-xs">
+                    {item.sku}
                   </TableCell>
-                ) : null}
-              </TableRow>
-            )
-          })}
-        </TableBody>
-      </Table>
-    </div>
+                  <TableCell className="text-muted-foreground text-xs">
+                    {item.category}
+                  </TableCell>
+                  <TableCell className="text-right tabular-nums">
+                    {item.onHandQuantity.toLocaleString()}{" "}
+                    <span className="text-muted-foreground text-xs">
+                      {UNIT_LABELS[item.unit]}
+                    </span>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground text-right text-xs tabular-nums">
+                    {item.reorderPoint.toLocaleString()}
+                  </TableCell>
+                  <TableCell className="text-right text-xs tabular-nums">
+                    {formatCurrency(item.unitCost)}
+                  </TableCell>
+                  <TableCell className="text-right text-xs font-medium tabular-nums">
+                    {formatCurrency(value)}
+                  </TableCell>
+                  <TableCell>
+                    <Badge
+                      variant={status.variant}
+                      className={`text-[10px] ${status.className}`}
+                    >
+                      {status.label}
+                    </Badge>
+                  </TableCell>
+                  {showActions ? (
+                    <TableCell className="text-right">
+                      <InventoryItemActions item={item} />
+                    </TableCell>
+                  ) : null}
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+      </div>
+    </>
   )
 }

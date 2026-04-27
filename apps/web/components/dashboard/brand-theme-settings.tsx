@@ -54,7 +54,7 @@ function BrandThemeSettings() {
           ))}
         </div>
 
-        <div className="bg-muted/30 flex items-center justify-between gap-4 rounded-xl border p-4">
+        <div className="bg-card flex items-center justify-between gap-4 rounded-xl border p-4">
           <div className="flex items-center gap-3">
             <span
               className="border-border block size-8 rounded-full border shadow-sm"

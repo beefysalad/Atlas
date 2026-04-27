@@ -60,7 +60,7 @@ export function SecuritySettings() {
         </CardContent>
       </Card>
 
-      <Card className="border-destructive/20 bg-destructive/[0.01]">
+      <Card className="border-destructive/20 bg-card">
         <CardHeader>
           <CardTitle className="text-destructive">Danger zone</CardTitle>
           <CardDescription>

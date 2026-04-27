@@ -52,7 +52,7 @@ export function InventoryOverviewInsights({
   if (isLoading) {
     return (
       <section className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-        <Card className="bg-muted/30 rounded-xl border-none shadow-sm">
+        <Card className="rounded-xl bg-card shadow-sm">
           <CardHeader>
             <Skeleton className="h-5 w-36" />
             <Skeleton className="h-4 w-56" />
@@ -61,7 +61,7 @@ export function InventoryOverviewInsights({
             <Skeleton className="h-[260px] w-full" />
           </CardContent>
         </Card>
-        <Card className="bg-muted/30 rounded-xl border-none shadow-sm">
+        <Card className="rounded-xl bg-card shadow-sm">
           <CardHeader>
             <Skeleton className="h-5 w-32" />
             <Skeleton className="h-4 w-48" />
@@ -133,7 +133,7 @@ export function InventoryOverviewInsights({
 
   return (
     <section className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-      <Card className="bg-muted/30 rounded-xl border-none shadow-sm">
+      <Card className="rounded-xl bg-card shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg">Category Mix</CardTitle>
           <CardDescription>
@@ -149,7 +149,7 @@ export function InventoryOverviewInsights({
             <>
               <ChartContainer
                 config={chartConfig}
-                className="mx-auto h-[240px] w-full min-w-0 sm:h-[260px]"
+                className="mx-auto h-[220px] w-full max-w-[220px] min-w-0 sm:h-[260px] sm:max-w-[260px]"
               >
                 <PieChart>
                   <ChartTooltip
@@ -173,8 +173,8 @@ export function InventoryOverviewInsights({
                     data={groupedByCategory}
                     dataKey="stockValue"
                     nameKey="category"
-                    innerRadius={56}
-                    outerRadius={84}
+                    innerRadius={44}
+                    outerRadius={74}
                     paddingAngle={3}
                     strokeWidth={4}
                   >
@@ -189,7 +189,7 @@ export function InventoryOverviewInsights({
                 {groupedByCategory.map((entry) => (
                   <div
                     key={entry.key}
-                    className="bg-background/60 rounded-xl border p-3"
+                    className="min-w-0 rounded-xl border bg-card p-3"
                   >
                     <div className="flex items-center gap-2">
                       <span
@@ -214,7 +214,7 @@ export function InventoryOverviewInsights({
         </CardContent>
       </Card>
 
-      <Card className="bg-muted/30 rounded-xl border-none shadow-sm">
+      <Card className="rounded-xl bg-card shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg">Quick Stats</CardTitle>
           <CardDescription>
@@ -222,19 +222,19 @@ export function InventoryOverviewInsights({
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          <div className="bg-background/60 rounded-xl border p-4">
+          <div className="rounded-xl border bg-card p-4">
             <p className="text-muted-foreground text-xs">Tracked categories</p>
             <p className="mt-1 text-2xl font-semibold">{categoryCount}</p>
           </div>
-          <div className="bg-background/60 rounded-xl border p-4">
+          <div className="rounded-xl border bg-card p-4">
             <p className="text-muted-foreground text-xs">Low-stock items</p>
             <p className="mt-1 text-2xl font-semibold">{lowStockCount}</p>
           </div>
-          <div className="bg-background/60 rounded-xl border p-4">
+          <div className="rounded-xl border bg-card p-4">
             <p className="text-muted-foreground text-xs">Out-of-stock items</p>
             <p className="mt-1 text-2xl font-semibold">{outOfStockCount}</p>
           </div>
-          <div className="bg-background/60 rounded-xl border p-4">
+          <div className="rounded-xl border bg-card p-4">
             <p className="text-muted-foreground text-xs">
               Highest value category
             </p>

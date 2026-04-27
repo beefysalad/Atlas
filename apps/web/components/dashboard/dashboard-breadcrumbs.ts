@@ -1,4 +1,4 @@
-import { dashboardNavItems } from "@/components/dashboard/dashboard-data"
+import { dashboardNavItems } from "@/components/dashboard/dashboard-navigation"
 
 type BreadcrumbContext = {
   segment: string
