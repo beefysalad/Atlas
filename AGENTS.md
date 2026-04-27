@@ -72,7 +72,7 @@ Use npm from the repository root. Do not create nested lockfiles.
 - Prefer reusable components when the same UI or behavior appears more than once.
 - Use shared `@workspace/ui` components before creating app-local UI primitives.
 - When making frontend UI changes or features, always consider both light and dark mode. Check contrast, surfaces, borders, muted text, hover states, and shadows in both themes before considering the work done.
-- For primary protected-app surfaces, prefer the shared card/background tokens such as `bg-card` and avoid ad hoc surface overrides like `bg-muted/30`, `bg-background/60`, or `border-none` unless there is a clear, intentional reason. Do not fake a card by making it transparent or lightly tinted when it should be a real work surface.
+- Prefer shared theme tokens and reusable variants for surfaces, fills, borders, and interactive states across the app. Avoid ad hoc styling like hardcoded tinted backgrounds or one-off utility mixes such as `bg-muted/30`, `bg-background/60`, `bg-green-50`, or `border-none` when the intent should be expressed through a shared token, component variant, or global pattern instead. If a visual treatment needs to repeat, centralize it rather than recreating it per component.
 
 ### shadcn/ui
 
