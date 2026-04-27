@@ -33,6 +33,7 @@ import {
 import { toast } from "sonner"
 
 import { BrandThemeSettings } from "@/components/dashboard/brand-theme-settings"
+import { NavigationMenuShowcase } from "@/components/components-gallery/navigation-menu-showcase"
 import { useLoading } from "@/components/providers/loading-provider"
 import {
   Accordion,
@@ -389,7 +390,8 @@ function ComponentsGalleryPage() {
             <CardHeader>
               <CardTitle>Navigation</CardTitle>
               <CardDescription>
-                Breadcrumbs and tabs for page-level orientation.
+                Breadcrumbs, tabs, and navigation menu patterns for page-level
+                orientation.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -434,6 +436,8 @@ function ComponentsGalleryPage() {
                   Prefer shared primitives from `packages/ui`.
                 </TabsContent>
               </Tabs>
+
+              <NavigationMenuShowcase />
             </CardContent>
           </Card>
 

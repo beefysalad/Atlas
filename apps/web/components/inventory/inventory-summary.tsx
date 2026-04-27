@@ -127,23 +127,52 @@ export function InventorySummary({
             key={card.key}
             className="bg-muted/30 rounded-xl border-none shadow-sm"
           >
-            <CardHeader className="pb-2">
+            <CardHeader className="pb-3">
               <CardTitle className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
-                <Icon
-                  className={`size-3.5 ${showAlert ? "text-amber-500" : ""}`}
-                />
+                <span
+                  className={`flex size-7 items-center justify-center rounded-full ${
+                    showAlert
+                      ? "bg-amber-500/12 text-amber-500"
+                      : "bg-primary/12 text-primary"
+                  }`}
+                >
+                  <Icon className="size-3.5" />
+                </span>
                 {card.label}
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="flex items-baseline justify-between gap-2">
+            <CardContent className="flex min-h-28 flex-col justify-between gap-5">
+              <div className="space-y-2">
                 <p
-                  className={`text-3xl font-black tracking-tight ${showAlert ? "text-amber-500" : ""}`}
+                  className={`text-3xl font-black tracking-tight ${
+                    showAlert ? "text-amber-500" : "text-foreground"
+                  }`}
                 >
                   {value}
                 </p>
-                <span className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 text-[10px] font-medium">
+              </div>
+              <div className="border-border/60 mt-auto flex items-center justify-between gap-3 border-t pt-3">
+                <span
+                  className={`text-xs font-medium ${
+                    showAlert ? "text-amber-600 dark:text-amber-400" : "text-primary"
+                  }`}
+                >
                   {sub}
+                </span>
+                <span
+                  className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
+                    showAlert
+                      ? "bg-amber-500/12 text-amber-600 dark:text-amber-400"
+                      : "bg-primary/10 text-primary"
+                  }`}
+                >
+                  {card.key === "skus"
+                    ? "Stock health"
+                    : card.key === "lowStock"
+                      ? "Attention"
+                      : card.key === "value"
+                        ? "Snapshot"
+                        : "Today"}
                 </span>
               </div>
             </CardContent>
