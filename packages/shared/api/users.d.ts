@@ -4,6 +4,14 @@ export type CurrentUserResponse = {
   email: string
   name: string
   imageUrl: string | null
+  timezone: string | null
+  defaultLocation: string | null
+}
+
+export type UpdateCurrentUserProfileRequest = {
+  displayName: string
+  timezone?: string | null
+  defaultLocation?: string | null
 }
 
 export type User = {

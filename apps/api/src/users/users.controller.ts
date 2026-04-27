@@ -1,10 +1,11 @@
-import { Controller, Get, Post, UseGuards } from "@nestjs/common"
+import { Body, Controller, Get, Patch, Post, UseGuards } from "@nestjs/common"
 import type {
   CurrentUserResponse,
   GetAllUsersResponse,
 } from "@workspace/shared"
 import { ClerkUserId } from "../common/decorators/clerk-user-id.decorator"
 import { ClerkAuthGuard } from "../common/guards/clerk-auth.guard"
+import { UpdateCurrentUserProfileDto } from "./dto/update-current-user-profile.dto"
 import { UsersService } from "./users.service"
 
 @Controller("users")
@@ -24,6 +25,17 @@ export class UsersController {
     @ClerkUserId() clerkUserId: string
   ): Promise<CurrentUserResponse> {
     return this.usersService.syncCurrentUser(clerkUserId)
+  }
+
+  @Patch("me/profile")
+  updateCurrentUserProfile(
+    @ClerkUserId() clerkUserId: string,
+    @Body() updateCurrentUserProfileDto: UpdateCurrentUserProfileDto
+  ): Promise<CurrentUserResponse> {
+    return this.usersService.updateCurrentUserProfile(
+      clerkUserId,
+      updateCurrentUserProfileDto
+    )
   }
 
   @Get("all")

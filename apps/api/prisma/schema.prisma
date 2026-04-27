@@ -38,13 +38,15 @@ enum InventoryMovementType {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  clerkId   String?  @unique
-  email     String   @unique
-  name      String
-  imageUrl  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  id              String   @id @default(uuid())
+  clerkId         String?  @unique
+  email           String   @unique
+  name            String
+  imageUrl        String?
+  timezone        String?
+  defaultLocation String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now()) @updatedAt
 }
 
 model InventoryItem {

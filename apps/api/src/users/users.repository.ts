@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common"
 import type {
   CurrentUserResponse,
   GetAllUsersResponse,
+  UpdateCurrentUserProfileRequest,
 } from "@workspace/shared"
 import { PrismaService } from "../prisma/prisma.service"
 
@@ -10,6 +11,33 @@ type UpsertClerkUserInput = {
   email: string
   name: string
   imageUrl: string | null
+}
+
+type UpdateCurrentUserProfileInput = {
+  clerkId: string
+  name: UpdateCurrentUserProfileRequest["displayName"]
+  timezone: string | null
+  defaultLocation: string | null
+}
+
+function toCurrentUserResponse(user: {
+  id: string
+  clerkId: string | null
+  email: string
+  name: string
+  imageUrl: string | null
+  timezone: string | null
+  defaultLocation: string | null
+}): CurrentUserResponse {
+  return {
+    id: user.id,
+    clerkId: user.clerkId ?? "",
+    email: user.email,
+    name: user.name,
+    imageUrl: user.imageUrl,
+    timezone: user.timezone,
+    defaultLocation: user.defaultLocation,
+  }
 }
 
 @Injectable()
@@ -34,13 +62,7 @@ export class UsersRepository {
         })
       : await this.upsertClerkUserByEmail(input)
 
-    return {
-      id: user.id,
-      clerkId: user.clerkId!,
-      email: user.email,
-      name: user.name,
-      imageUrl: user.imageUrl,
-    }
+    return toCurrentUserResponse(user)
   }
 
   private async upsertClerkUserByEmail(input: UpsertClerkUserInput) {
@@ -71,6 +93,24 @@ export class UsersRepository {
       },
     })
   }
+
+  async updateCurrentUserProfile(
+    input: UpdateCurrentUserProfileInput
+  ): Promise<CurrentUserResponse> {
+    const user = await this.prisma.db.user.update({
+      where: {
+        clerkId: input.clerkId,
+      },
+      data: {
+        name: input.name,
+        timezone: input.timezone,
+        defaultLocation: input.defaultLocation,
+      },
+    })
+
+    return toCurrentUserResponse(user)
+  }
+
   async getAllUsers(): Promise<GetAllUsersResponse> {
     const users = await this.prisma.db.user.findMany({
       where: {

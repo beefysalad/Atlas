@@ -1,7 +1,32 @@
 "use client"
 
-import { RiUser3Line } from "@remixicon/react"
+import { useEffect, useMemo } from "react"
+import { useClerk } from "@clerk/nextjs"
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  RiExternalLinkLine,
+  RiLoader4Line,
+  RiMapPinLine,
+  RiTimeLine,
+  RiUser3Line,
+} from "@remixicon/react"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+
 import { useDashboardUser } from "@/components/dashboard/dashboard-user-provider"
+import { useCurrentUserProfile } from "@/hooks/api/use-current-user-profile"
+import { useUpdateCurrentUserProfile } from "@/hooks/api/use-update-current-user-profile"
+import {
+  profileSettingsSchema,
+  type ProfileSettingsFormValues,
+} from "@/lib/validations/profile-settings"
+
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@workspace/ui/components/alert"
 import {
   Avatar,
   AvatarFallback,
@@ -15,100 +40,219 @@ import {
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card"
-import { Field, FieldGroup, FieldLabel } from "@workspace/ui/components/field"
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@workspace/ui/components/field"
 import { Input } from "@workspace/ui/components/input"
 
-export function ProfileSettings() {
-  const user = useDashboardUser()
-  const initials = getInitials(user.name, user.email)
+function ProfileSettings() {
+  const clerk = useClerk()
+  const router = useRouter()
+  const dashboardUser = useDashboardUser()
+  const { data: profile, error, isPending } = useCurrentUserProfile()
+  const updateProfileMutation = useUpdateCurrentUserProfile()
+  const initials = useMemo(
+    () => getInitials(dashboardUser.name, dashboardUser.email),
+    [dashboardUser.email, dashboardUser.name]
+  )
+
+  const {
+    formState: { errors, isDirty },
+    handleSubmit,
+    register,
+    reset,
+  } = useForm<ProfileSettingsFormValues>({
+    resolver: zodResolver(profileSettingsSchema),
+    defaultValues: {
+      displayName: dashboardUser.name,
+      timezone: "",
+      defaultLocation: "",
+    },
+  })
+
+  useEffect(() => {
+    if (!profile) {
+      return
+    }
+
+    reset({
+      displayName: profile.name,
+      timezone: profile.timezone ?? "",
+      defaultLocation: profile.defaultLocation ?? "",
+    })
+  }, [profile, reset])
+
+  async function onSubmit(values: ProfileSettingsFormValues) {
+    const updatedProfile = await updateProfileMutation.mutateAsync({
+      displayName: values.displayName,
+      timezone: values.timezone?.trim() || null,
+      defaultLocation: values.defaultLocation?.trim() || null,
+    })
+
+    reset({
+      displayName: updatedProfile.name,
+      timezone: updatedProfile.timezone ?? "",
+      defaultLocation: updatedProfile.defaultLocation ?? "",
+    })
+    toast.success("Profile updated")
+    router.refresh()
+  }
+
+  function handleOpenUserProfile() {
+    clerk.openUserProfile()
+  }
+
+  if (isPending && !profile) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Profile</CardTitle>
+          <CardDescription>Loading your account details.</CardDescription>
+        </CardHeader>
+        <CardContent className="text-muted-foreground flex items-center gap-2 text-sm">
+          <RiLoader4Line className="size-4 animate-spin" />
+          Syncing your current account details…
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
-      <div className="space-y-6 lg:col-span-2">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="space-y-6">
+        {error ? (
+          <Alert variant="destructive">
+            <AlertTitle>Could not load your profile</AlertTitle>
+            <AlertDescription>
+              We could not sync your current account details. You can still try
+              again or manage your account directly in Clerk.
+            </AlertDescription>
+          </Alert>
+        ) : null}
+
         <Card>
           <CardHeader>
             <CardTitle>Profile information</CardTitle>
             <CardDescription>
-              This is how you will appear to others in the workspace.
+              Update the name and default app preferences you use around the
+              workspace.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <FieldGroup>
-              <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-                <Avatar
-                  className="border-background size-20 border-2 shadow-sm"
-                  size="lg"
-                >
-                  {user.imageUrl ? (
-                    <AvatarImage alt={user.name} src={user.imageUrl} />
-                  ) : null}
-                  <AvatarFallback className="bg-primary/5 text-primary text-xl font-semibold">
-                    {initials}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex flex-col gap-2">
-                  <div className="flex flex-wrap gap-2">
-                    <Button variant="outline" size="sm">
-                      Change photo
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                    >
-                      Remove
-                    </Button>
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+              <div className="bg-muted/30 flex flex-col gap-4 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-4">
+                  <Avatar className="size-16" size="lg">
+                    {dashboardUser.imageUrl ? (
+                      <AvatarImage
+                        alt={dashboardUser.name}
+                        src={dashboardUser.imageUrl}
+                      />
+                    ) : null}
+                    <AvatarFallback className="text-lg font-semibold">
+                      {initials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium">Managed by Clerk</p>
+                    <p className="text-muted-foreground text-sm">
+                      Photo, email, password, and security settings live in your
+                      account portal.
+                    </p>
                   </div>
-                  <p className="text-muted-foreground text-xs">
-                    JPG, GIF or PNG. Max size of 2MB.
-                  </p>
                 </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                  onClick={handleOpenUserProfile}
+                >
+                  <RiExternalLinkLine />
+                  Edit profile
+                </Button>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <FieldGroup>
                 <Field>
-                  <FieldLabel htmlFor="settings-name">Display name</FieldLabel>
+                  <FieldLabel htmlFor="settings-display-name">
+                    Display name
+                  </FieldLabel>
                   <Input
-                    id="settings-name"
-                    defaultValue={user.name}
+                    id="settings-display-name"
                     placeholder="Your name"
+                    {...register("displayName")}
                   />
+                  <FieldError errors={[errors.displayName]} />
                 </Field>
+
                 <Field>
                   <FieldLabel htmlFor="settings-email">
                     Email address
                   </FieldLabel>
                   <Input
                     id="settings-email"
-                    defaultValue={user.email}
                     type="email"
-                    placeholder="name@example.com"
+                    value={profile?.email ?? dashboardUser.email}
+                    readOnly
                   />
+                  <FieldDescription>
+                    Email changes are handled through your Clerk account.
+                  </FieldDescription>
                 </Field>
-              </div>
-            </FieldGroup>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Workspace details</CardTitle>
-            <CardDescription>
-              Information about your current workspace.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <FieldGroup>
-              <Field>
-                <FieldLabel htmlFor="settings-workspace">
-                  Workspace name
-                </FieldLabel>
-                <Input id="settings-workspace" defaultValue="Nexion" disabled />
-                <p className="text-muted-foreground mt-1 text-xs">
-                  Workspace names can only be changed by administrators.
-                </p>
-              </Field>
-            </FieldGroup>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Field>
+                    <FieldLabel htmlFor="settings-timezone">
+                      Timezone
+                    </FieldLabel>
+                    <Input
+                      id="settings-timezone"
+                      placeholder="e.g. Asia/Singapore"
+                      {...register("timezone")}
+                    />
+                    <FieldDescription>
+                      Used for timestamps, summaries, and future reminders.
+                    </FieldDescription>
+                    <FieldError errors={[errors.timezone]} />
+                  </Field>
+
+                  <Field>
+                    <FieldLabel htmlFor="settings-default-location">
+                      Default location
+                    </FieldLabel>
+                    <Input
+                      id="settings-default-location"
+                      placeholder="e.g. Main warehouse"
+                      {...register("defaultLocation")}
+                    />
+                    <FieldDescription>
+                      Helps prefill operational flows as the app grows.
+                    </FieldDescription>
+                    <FieldError errors={[errors.defaultLocation]} />
+                  </Field>
+                </div>
+              </FieldGroup>
+
+              <div className="flex justify-end">
+                <Button
+                  type="submit"
+                  disabled={updateProfileMutation.isPending || !isDirty}
+                >
+                  {updateProfileMutation.isPending ? (
+                    <>
+                      <RiLoader4Line className="size-4 animate-spin" />
+                      Saving profile
+                    </>
+                  ) : (
+                    "Save changes"
+                  )}
+                </Button>
+              </div>
+            </form>
           </CardContent>
         </Card>
       </div>
@@ -116,29 +260,57 @@ export function ProfileSettings() {
       <div className="space-y-6">
         <Card className="bg-muted/30">
           <CardHeader>
-            <CardTitle className="text-sm">Account Status</CardTitle>
+            <CardTitle className="text-base">Account ownership</CardTitle>
+            <CardDescription>
+              Keep identity and security in Clerk, while Atlas stores app-level
+              preferences for daily work.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex flex-col gap-4">
-              {[
-                ["Authentication", "Clerk"],
-                ["Plan", "Free"],
-                ["Region", "US-East"],
-              ].map(([label, value]) => (
-                <div
-                  key={label}
-                  className="flex items-center justify-between text-sm"
-                >
-                  <span className="text-muted-foreground">{label}</span>
-                  <span className="font-medium">{value}</span>
-                </div>
-              ))}
-            </div>
-            <Button variant="outline" className="w-full">
-              Upgrade plan
-            </Button>
+            <ProfileOwnershipRow
+              description="Name shown around the workspace shell and records."
+              icon={RiUser3Line}
+              label="Display name"
+            />
+            <ProfileOwnershipRow
+              description="Email address, profile photo, password, and sign-in methods."
+              icon={RiExternalLinkLine}
+              label="Account details"
+            />
+            <ProfileOwnershipRow
+              description="Local preference for how Atlas shows time-based activity."
+              icon={RiTimeLine}
+              label="Timezone"
+            />
+            <ProfileOwnershipRow
+              description="Default branch, warehouse, farm, or operational location."
+              icon={RiMapPinLine}
+              label="Default location"
+            />
           </CardContent>
         </Card>
+      </div>
+    </div>
+  )
+}
+
+function ProfileOwnershipRow({
+  description,
+  icon: Icon,
+  label,
+}: {
+  description: string
+  icon: React.ComponentType<{ className?: string }>
+  label: string
+}) {
+  return (
+    <div className="bg-background flex items-start gap-3 rounded-lg border p-4">
+      <div className="bg-muted flex size-10 shrink-0 items-center justify-center rounded-lg border">
+        <Icon className="text-muted-foreground size-5" />
+      </div>
+      <div className="space-y-1">
+        <p className="text-sm font-medium">{label}</p>
+        <p className="text-muted-foreground text-sm">{description}</p>
       </div>
     </div>
   )
@@ -158,3 +330,5 @@ function getInitials(name: string, email: string) {
 
   return email[0]?.toUpperCase() ?? "N"
 }
+
+export { ProfileSettings }

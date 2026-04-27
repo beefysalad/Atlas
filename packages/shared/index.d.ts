@@ -17,5 +17,6 @@ export type {
 export type {
   CurrentUserResponse,
   GetAllUsersResponse,
+  UpdateCurrentUserProfileRequest,
   User,
 } from "./api/users"
