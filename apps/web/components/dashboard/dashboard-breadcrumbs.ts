@@ -35,10 +35,9 @@ const breadcrumbResolvers: Record<string, BreadcrumbResolver> = {
   },
   edit: ({ pathSegments, index }) => {
     const previousSegment = pathSegments[index - 1]
-    const resourceSegment =
-      isOpaqueBreadcrumbSegment(previousSegment)
-        ? pathSegments[index - 2]
-        : previousSegment
+    const resourceSegment = isOpaqueBreadcrumbSegment(previousSegment)
+      ? pathSegments[index - 2]
+      : previousSegment
 
     if (resourceSegment === "items") {
       return "Edit Item"
@@ -119,7 +118,7 @@ export function getDashboardBreadcrumbSegments(pathname: string) {
         label,
       }
     })
-    .filter(
-      (segment): segment is { href: string; label: string } => Boolean(segment)
+    .filter((segment): segment is { href: string; label: string } =>
+      Boolean(segment)
     )
 }

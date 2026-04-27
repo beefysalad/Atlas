@@ -39,9 +39,8 @@ function calcInventoryValue(items: InventoryItem[]): number {
 
 function countMovementsToday(movements: InventoryMovement[]): number {
   const today = new Date().toDateString()
-  return movements.filter(
-    (m) => new Date(m.createdAt).toDateString() === today
-  ).length
+  return movements.filter((m) => new Date(m.createdAt).toDateString() === today)
+    .length
 }
 
 function formatCurrency(value: number): string {
@@ -97,12 +96,15 @@ export function InventorySummary({
     return (
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {Array.from({ length: 4 }).map((_, i) => (
-          <Card key={i} className="rounded-xl border-none bg-muted/30 shadow-sm">
+          <Card
+            key={i}
+            className="bg-muted/30 rounded-xl border-none shadow-sm"
+          >
             <CardHeader className="pb-2">
               <Skeleton className="h-3 w-24" />
             </CardHeader>
             <CardContent>
-              <Skeleton className="h-8 w-28 mb-1" />
+              <Skeleton className="mb-1 h-8 w-28" />
               <Skeleton className="h-3 w-20" />
             </CardContent>
           </Card>
@@ -123,11 +125,13 @@ export function InventorySummary({
         return (
           <Card
             key={card.key}
-            className="rounded-xl border-none bg-muted/30 shadow-sm"
+            className="bg-muted/30 rounded-xl border-none shadow-sm"
           >
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-xs font-medium tracking-wider text-muted-foreground uppercase">
-                <Icon className={`size-3.5 ${showAlert ? "text-amber-500" : ""}`} />
+              <CardTitle className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
+                <Icon
+                  className={`size-3.5 ${showAlert ? "text-amber-500" : ""}`}
+                />
                 {card.label}
               </CardTitle>
             </CardHeader>
@@ -138,7 +142,7 @@ export function InventorySummary({
                 >
                   {value}
                 </p>
-                <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                <span className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 text-[10px] font-medium">
                   {sub}
                 </span>
               </div>

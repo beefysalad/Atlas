@@ -9,7 +9,11 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@workspace/ui/components/empty"
-import { Alert, AlertDescription, AlertTitle } from "@workspace/ui/components/alert"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@workspace/ui/components/alert"
 import { Badge } from "@workspace/ui/components/badge"
 import { Skeleton } from "@workspace/ui/components/skeleton"
 import {
@@ -96,7 +100,7 @@ export function InventoryTable({
 
   if (activeItems.length === 0) {
     return (
-      <Empty className="border border-dashed border-border py-16">
+      <Empty className="border-border border border-dashed py-16">
         <EmptyHeader>
           <EmptyMedia variant="icon">
             <RiArchiveLine />
@@ -112,7 +116,7 @@ export function InventoryTable({
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
+    <div className="border-border overflow-x-auto rounded-xl border">
       <Table>
         <TableHeader>
           <TableRow className="bg-muted/40 hover:bg-muted/40">
@@ -125,7 +129,9 @@ export function InventoryTable({
             <TableHead className="text-right text-xs">Stock Value</TableHead>
             <TableHead className="text-xs">Status</TableHead>
             {showActions ? (
-              <TableHead className="w-[88px] text-right text-xs">Actions</TableHead>
+              <TableHead className="w-[88px] text-right text-xs">
+                Actions
+              </TableHead>
             ) : null}
           </TableRow>
         </TableHeader>
@@ -136,25 +142,25 @@ export function InventoryTable({
             return (
               <TableRow key={item.id} className="text-sm">
                 <TableCell className="font-medium">{item.name}</TableCell>
-                <TableCell className="font-mono text-xs text-muted-foreground">
+                <TableCell className="text-muted-foreground font-mono text-xs">
                   {item.sku}
                 </TableCell>
-                <TableCell className="text-xs text-muted-foreground">
+                <TableCell className="text-muted-foreground text-xs">
                   {item.category}
                 </TableCell>
                 <TableCell className="text-right tabular-nums">
                   {item.onHandQuantity.toLocaleString()}{" "}
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-muted-foreground text-xs">
                     {UNIT_LABELS[item.unit]}
                   </span>
                 </TableCell>
-                <TableCell className="text-right tabular-nums text-xs text-muted-foreground">
+                <TableCell className="text-muted-foreground text-right text-xs tabular-nums">
                   {item.reorderPoint.toLocaleString()}
                 </TableCell>
-                <TableCell className="text-right tabular-nums text-xs">
+                <TableCell className="text-right text-xs tabular-nums">
                   {formatCurrency(item.unitCost)}
                 </TableCell>
-                <TableCell className="text-right tabular-nums text-xs font-medium">
+                <TableCell className="text-right text-xs font-medium tabular-nums">
                   {formatCurrency(value)}
                 </TableCell>
                 <TableCell>

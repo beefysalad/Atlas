@@ -28,13 +28,13 @@ function DashboardOverview() {
     <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
       <section className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div className="space-y-1">
-          <p className="text-sm text-muted-foreground">Overview</p>
+          <p className="text-muted-foreground text-sm">Overview</p>
           <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
             {getGreeting()}, {user.name.split(" ")[0]}
           </h1>
-          <p className="text-sm text-muted-foreground">
-            Today&apos;s  books are ready for sales, collections, and
-            supplier follow-up.
+          <p className="text-muted-foreground text-sm">
+            Today&apos;s books are ready for sales, collections, and supplier
+            follow-up.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">

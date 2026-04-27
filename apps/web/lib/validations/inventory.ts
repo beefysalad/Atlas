@@ -1,9 +1,6 @@
 import { z } from "zod/v3"
 
-import type {
-  InventoryMovementType,
-  InventoryUnit,
-} from "@workspace/shared"
+import type { InventoryMovementType, InventoryUnit } from "@workspace/shared"
 
 // ─── Enums as const arrays for form selects ──────────────────────────────────
 
@@ -76,9 +73,7 @@ export const createMovementSchema = z.object({
     ] as const,
     { message: "Select a movement type" }
   ),
-  quantity: z
-    .number()
-    .positive("Quantity must be greater than zero"),
+  quantity: z.number().positive("Quantity must be greater than zero"),
   unitCostSnapshot: z
     .number()
     .nonnegative("Unit cost cannot be negative")

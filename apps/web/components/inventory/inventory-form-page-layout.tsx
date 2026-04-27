@@ -20,9 +20,7 @@ export function InventoryFormPageLayout({
       <div className="w-full">
         <InventoryPageHeader title={title} description={description} />
       </div>
-      <div className="mx-auto w-full max-w-3xl">
-        {children}
-      </div>
+      <div className="mx-auto w-full max-w-3xl">{children}</div>
     </main>
   )
 }

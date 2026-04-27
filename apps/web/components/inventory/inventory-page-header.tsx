@@ -18,12 +18,12 @@ export function InventoryPageHeader({
   return (
     <section className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
       <div className="space-y-1">
-        <p className="text-sm text-muted-foreground">{eyebrow}</p>
+        <p className="text-muted-foreground text-sm">{eyebrow}</p>
         <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
           {title}
         </h1>
         {description ? (
-          <p className="max-w-2xl text-sm text-muted-foreground">
+          <p className="text-muted-foreground max-w-2xl text-sm">
             {description}
           </p>
         ) : null}

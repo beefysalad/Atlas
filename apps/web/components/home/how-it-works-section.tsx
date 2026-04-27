@@ -27,7 +27,7 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section className="border-b border-border bg-muted/30">
+    <section className="border-border bg-muted/30 border-b">
       <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
         <motion.div
           variants={staggerContainer}
@@ -38,30 +38,39 @@ export function HowItWorksSection() {
         >
           {/* Heading */}
           <motion.div variants={fadeUp} className="max-w-xl space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+            <span className="text-primary text-xs font-semibold tracking-widest uppercase">
               How it works
             </span>
             <h2 className="font-heading text-3xl font-black tracking-tight sm:text-4xl">
               Simple enough for day one.
             </h2>
             <p className="text-muted-foreground text-base leading-relaxed">
-              We designed Atlas so anyone can get up and running without a complicated setup process.
+              We designed Atlas so anyone can get up and running without a
+              complicated setup process.
             </p>
           </motion.div>
 
           {/* Steps */}
           <div className="grid gap-8 sm:grid-cols-3">
             {steps.map((s, i) => (
-              <motion.div key={s.step} variants={fadeUp} className="relative space-y-4">
+              <motion.div
+                key={s.step}
+                variants={fadeUp}
+                className="relative space-y-4"
+              >
                 {/* Connector line */}
                 {i < steps.length - 1 && (
-                  <div className="absolute top-5 left-10 hidden h-px w-[calc(100%+2rem)] bg-border sm:block" />
+                  <div className="bg-border absolute top-5 left-10 hidden h-px w-[calc(100%+2rem)] sm:block" />
                 )}
-                <div className="relative flex size-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-sm font-black text-primary">
+                <div className="border-primary/30 bg-primary/10 text-primary relative flex size-10 items-center justify-center rounded-xl border text-sm font-black">
                   {s.step}
                 </div>
-                <h3 className="text-base font-bold text-foreground">{s.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{s.description}</p>
+                <h3 className="text-foreground text-base font-bold">
+                  {s.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {s.description}
+                </p>
               </motion.div>
             ))}
           </div>

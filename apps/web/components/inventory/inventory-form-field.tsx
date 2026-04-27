@@ -26,12 +26,12 @@ export function InventoryFormField({
         {optional ? (
           <>
             {" "}
-            <span className="text-xs text-muted-foreground">(optional)</span>
+            <span className="text-muted-foreground text-xs">(optional)</span>
           </>
         ) : null}
       </Label>
       {children}
-      {error ? <p className="text-xs text-destructive">{error}</p> : null}
+      {error ? <p className="text-destructive text-xs">{error}</p> : null}
     </div>
   )
 }

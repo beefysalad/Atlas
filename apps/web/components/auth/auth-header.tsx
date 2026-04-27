@@ -14,10 +14,12 @@ function AuthHeader() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 px-6 backdrop-blur-md">
+    <header className="border-border bg-background/80 fixed inset-x-0 top-0 z-50 border-b px-6 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-7 items-center justify-center rounded-lg bg-primary text-xs font-black text-primary-foreground">A</span>
+          <span className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg text-xs font-black">
+            A
+          </span>
           <span className="text-sm font-bold tracking-tight">Atlas</span>
         </Link>
         <div className="flex items-center gap-2">

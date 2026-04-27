@@ -92,10 +92,7 @@ export function InventoryMovementForm({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form
-          onSubmit={handleSubmit(onSubmitAction)}
-          className="space-y-5"
-        >
+        <form onSubmit={handleSubmit(onSubmitAction)} className="space-y-5">
           <InventoryFormField
             htmlFor="itemId"
             label="Inventory item"
@@ -119,11 +116,9 @@ export function InventoryMovementForm({
           >
             <Select
               onValueChange={(v) =>
-                setValue(
-                  "type",
-                  v as CreateMovementFormValues["type"],
-                  { shouldValidate: true }
-                )
+                setValue("type", v as CreateMovementFormValues["type"], {
+                  shouldValidate: true,
+                })
               }
             >
               <SelectTrigger id="type" className="w-full">

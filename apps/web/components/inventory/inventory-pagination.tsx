@@ -18,7 +18,10 @@ interface InventoryPaginationProps {
   onPageChange: (page: number) => void
 }
 
-function getVisiblePages(currentPage: number, totalPages: number): (number | "ellipsis")[] {
+function getVisiblePages(
+  currentPage: number,
+  totalPages: number
+): (number | "ellipsis")[] {
   if (totalPages <= 5) {
     return Array.from({ length: totalPages }, (_, index) => index + 1)
   }
@@ -28,7 +31,14 @@ function getVisiblePages(currentPage: number, totalPages: number): (number | "el
   }
 
   if (currentPage >= totalPages - 2) {
-    return [1, "ellipsis", totalPages - 3, totalPages - 2, totalPages - 1, totalPages]
+    return [
+      1,
+      "ellipsis",
+      totalPages - 3,
+      totalPages - 2,
+      totalPages - 1,
+      totalPages,
+    ]
   }
 
   return [
@@ -61,7 +71,7 @@ export function InventoryPagination({
 
   return (
     <div className="flex flex-col gap-3 border-t pt-4 sm:flex-row sm:items-center sm:justify-between">
-      <p className="text-xs text-muted-foreground">
+      <p className="text-muted-foreground text-xs">
         Showing {startItem}-{endItem} of {totalItems}
       </p>
 
@@ -78,7 +88,9 @@ export function InventoryPagination({
               }}
               aria-disabled={isPreviousDisabled}
               tabIndex={isPreviousDisabled ? -1 : 0}
-              className={isPreviousDisabled ? "pointer-events-none opacity-50" : ""}
+              className={
+                isPreviousDisabled ? "pointer-events-none opacity-50" : ""
+              }
             />
           </PaginationItem>
 

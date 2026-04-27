@@ -15,17 +15,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card"
-import { Alert, AlertDescription, AlertTitle } from "@workspace/ui/components/alert"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@workspace/ui/components/alert"
 import { Skeleton } from "@workspace/ui/components/skeleton"
 import { RiErrorWarningLine } from "@remixicon/react"
 
 export function InventoryNewMovementPage() {
   const router = useRouter()
-  const {
-    data,
-    isPending,
-    isError,
-  } = useInventoryItems()
+  const { data, isPending, isError } = useInventoryItems()
   const createMutation = useCreateInventoryMovement()
 
   const items = data?.items ?? []
@@ -47,9 +47,7 @@ export function InventoryNewMovementPage() {
             <CardTitle className="text-base font-semibold">
               Movement details
             </CardTitle>
-            <CardDescription>
-              Loading your active item list.
-            </CardDescription>
+            <CardDescription>Loading your active item list.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <Skeleton className="h-18 w-full rounded-3xl" />

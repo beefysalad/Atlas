@@ -46,9 +46,12 @@ async function getInventoryItem(
   token: string,
   itemId: string
 ): Promise<InventoryItem> {
-  const response = await apiClient.get<InventoryItem>(`/inventory/items/${itemId}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  })
+  const response = await apiClient.get<InventoryItem>(
+    `/inventory/items/${itemId}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  )
   return response.data
 }
 
@@ -56,9 +59,13 @@ async function createInventoryItem(
   token: string,
   data: CreateInventoryItemRequest
 ): Promise<InventoryItem> {
-  const response = await apiClient.post<InventoryItem>("/inventory/items", data, {
-    headers: { Authorization: `Bearer ${token}` },
-  })
+  const response = await apiClient.post<InventoryItem>(
+    "/inventory/items",
+    data,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  )
   return response.data
 }
 
@@ -77,7 +84,10 @@ async function updateInventoryItem(
   return response.data
 }
 
-async function deleteInventoryItem(token: string, itemId: string): Promise<void> {
+async function deleteInventoryItem(
+  token: string,
+  itemId: string
+): Promise<void> {
   await apiClient.delete(`/inventory/items/${itemId}`, {
     headers: { Authorization: `Bearer ${token}` },
   })

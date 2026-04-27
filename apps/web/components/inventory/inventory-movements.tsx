@@ -2,7 +2,11 @@
 
 import type { InventoryItem, InventoryMovement } from "@workspace/shared"
 
-import { Alert, AlertDescription, AlertTitle } from "@workspace/ui/components/alert"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@workspace/ui/components/alert"
 import { Badge } from "@workspace/ui/components/badge"
 import {
   Empty,
@@ -96,15 +100,13 @@ export function InventoryMovements({
     )
   }
 
-  const recent = [...movements]
-    .sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    )
+  const recent = [...movements].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  )
 
   if (recent.length === 0) {
     return (
-      <Empty className="border border-dashed border-border py-16">
+      <Empty className="border-border border border-dashed py-16">
         <EmptyHeader>
           <EmptyMedia variant="icon">
             <RiSwapLine />
@@ -120,7 +122,7 @@ export function InventoryMovements({
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
+    <div className="border-border overflow-x-auto rounded-xl border">
       <Table>
         <TableHeader>
           <TableRow className="bg-muted/40 hover:bg-muted/40">
@@ -132,7 +134,9 @@ export function InventoryMovements({
             <TableHead className="text-xs">Reference</TableHead>
             <TableHead className="text-xs">Notes</TableHead>
             {showActions ? (
-              <TableHead className="w-[88px] text-right text-xs">Actions</TableHead>
+              <TableHead className="w-[88px] text-right text-xs">
+                Actions
+              </TableHead>
             ) : null}
           </TableRow>
         </TableHeader>
@@ -142,12 +146,14 @@ export function InventoryMovements({
             const isIncrease = INCREASE_TYPES.has(movement.type)
             return (
               <TableRow key={movement.id} className="text-sm">
-                <TableCell className="text-xs text-muted-foreground tabular-nums whitespace-nowrap">
+                <TableCell className="text-muted-foreground text-xs whitespace-nowrap tabular-nums">
                   {formatDate(movement.createdAt)}
                 </TableCell>
                 <TableCell className="font-medium">
                   {item?.name ?? (
-                    <span className="text-xs text-muted-foreground">Unknown</span>
+                    <span className="text-muted-foreground text-xs">
+                      Unknown
+                    </span>
                   )}
                 </TableCell>
                 <TableCell>
@@ -159,20 +165,20 @@ export function InventoryMovements({
                   </Badge>
                 </TableCell>
                 <TableCell
-                  className={`text-right tabular-nums text-xs font-semibold ${isIncrease ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground"}`}
+                  className={`text-right text-xs font-semibold tabular-nums ${isIncrease ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground"}`}
                 >
                   {isIncrease ? "+" : "−"}
                   {movement.quantity.toLocaleString()}
                 </TableCell>
-                <TableCell className="text-right tabular-nums text-xs text-muted-foreground">
+                <TableCell className="text-muted-foreground text-right text-xs tabular-nums">
                   {movement.unitCostSnapshot != null
                     ? formatCurrency(movement.unitCostSnapshot)
                     : "—"}
                 </TableCell>
-                <TableCell className="text-xs text-muted-foreground">
+                <TableCell className="text-muted-foreground text-xs">
                   {movement.reference ?? "—"}
                 </TableCell>
-                <TableCell className="max-w-[200px] truncate text-xs text-muted-foreground">
+                <TableCell className="text-muted-foreground max-w-[200px] truncate text-xs">
                   {movement.notes ?? "—"}
                 </TableCell>
                 {showActions ? (

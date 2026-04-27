@@ -63,10 +63,7 @@ export function InventoryItemCombobox({
         }
       }}
     >
-      <ComboboxInput
-        placeholder={placeholder}
-        className="w-full"
-      />
+      <ComboboxInput placeholder={placeholder} className="w-full" />
       <ComboboxContent>
         <ComboboxEmpty>{emptyText}</ComboboxEmpty>
         <ComboboxList>
@@ -78,7 +75,7 @@ export function InventoryItemCombobox({
             >
               <span className="min-w-0">
                 <span className="block truncate font-medium">{item.name}</span>
-                <span className="block truncate text-xs text-muted-foreground">
+                <span className="text-muted-foreground block truncate text-xs">
                   {item.sku} · {item.category} · {item.onHandQuantity} on hand
                 </span>
               </span>

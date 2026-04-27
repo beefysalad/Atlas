@@ -8,7 +8,11 @@ import { InventoryItemForm } from "@/components/inventory/inventory-item-form"
 import { useInventoryItem } from "@/hooks/inventory/use-inventory-item"
 import { useUpdateInventoryItem } from "@/hooks/inventory/use-update-inventory-item"
 import type { CreateItemFormValues } from "@/lib/validations/inventory"
-import { Alert, AlertDescription, AlertTitle } from "@workspace/ui/components/alert"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@workspace/ui/components/alert"
 import {
   Card,
   CardContent,
@@ -22,9 +26,7 @@ interface InventoryEditItemPageProps {
   itemId: string
 }
 
-export function InventoryEditItemPage({
-  itemId,
-}: InventoryEditItemPageProps) {
+export function InventoryEditItemPage({ itemId }: InventoryEditItemPageProps) {
   const router = useRouter()
   const { data: item, isPending, isError } = useInventoryItem(itemId)
   const updateMutation = useUpdateInventoryItem(itemId)

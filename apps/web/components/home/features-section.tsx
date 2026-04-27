@@ -53,7 +53,7 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section className="border-b border-border bg-background">
+    <section className="border-border bg-background border-b">
       <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
         <motion.div
           variants={staggerContainer}
@@ -64,14 +64,15 @@ export function FeaturesSection() {
         >
           {/* Heading */}
           <motion.div variants={fadeUp} className="max-w-xl space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+            <span className="text-primary text-xs font-semibold tracking-widest uppercase">
               Features
             </span>
             <h2 className="font-heading text-3xl font-black tracking-tight sm:text-4xl">
               Everything you need. Nothing you don't.
             </h2>
             <p className="text-muted-foreground text-base leading-relaxed">
-              Atlas focuses on what matters — financial clarity, operational visibility, and simplicity.
+              Atlas focuses on what matters — financial clarity, operational
+              visibility, and simplicity.
             </p>
           </motion.div>
 
@@ -81,13 +82,15 @@ export function FeaturesSection() {
               <motion.div
                 key={f.title}
                 variants={fadeUp}
-                className="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md hover:shadow-primary/5"
+                className="group border-border bg-card hover:border-primary/30 hover:shadow-primary/5 rounded-2xl border p-6 transition-all hover:shadow-md"
               >
-                <div className="mb-4 flex size-10 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/15">
-                  <f.icon className="size-5 text-primary" />
+                <div className="bg-primary/10 group-hover:bg-primary/15 mb-4 flex size-10 items-center justify-center rounded-xl transition-colors">
+                  <f.icon className="text-primary size-5" />
                 </div>
-                <h3 className="mb-1.5 text-sm font-bold text-foreground">{f.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <h3 className="text-foreground mb-1.5 text-sm font-bold">
+                  {f.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {f.description}
                 </p>
               </motion.div>

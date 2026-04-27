@@ -50,7 +50,7 @@ export function InventoryMovementsPage() {
         actions={
           <Button asChild size="sm" className="w-full sm:w-auto">
             <Link href="/inventory/movements/new">
-             <RiAddLine className="size-4" />
+              <RiAddLine className="size-4" />
               Add movement
             </Link>
           </Button>
@@ -59,10 +59,10 @@ export function InventoryMovementsPage() {
 
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-foreground">
+          <h2 className="text-foreground text-sm font-semibold">
             Recent movements
           </h2>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             {totalItems} total entries
           </span>
         </div>

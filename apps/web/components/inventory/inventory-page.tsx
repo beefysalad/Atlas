@@ -39,18 +39,23 @@ export function InventoryPage() {
         description="Track on-hand stock, monitor low-stock items, and log every movement across your operation."
         actions={
           <>
-          <Button asChild size="sm" variant="outline" className="w-full sm:w-auto">
-            <Link href="/inventory/items/new">
-              <RiAddLine className="size-4" />
-              Add item
-            </Link>
-          </Button>
-          <Button asChild size="sm" className="w-full sm:w-auto">
-            <Link href="/inventory/movements/new">
-            <RiAddLine className="size-4" />
-              Add movement
-            </Link>
-          </Button>
+            <Button
+              asChild
+              size="sm"
+              variant="outline"
+              className="w-full sm:w-auto"
+            >
+              <Link href="/inventory/items/new">
+                <RiAddLine className="size-4" />
+                Add item
+              </Link>
+            </Button>
+            <Button asChild size="sm" className="w-full sm:w-auto">
+              <Link href="/inventory/movements/new">
+                <RiAddLine className="size-4" />
+                Add movement
+              </Link>
+            </Button>
           </>
         }
       />
@@ -62,18 +67,20 @@ export function InventoryPage() {
         isLoading={isLoading}
       />
 
-      <InventoryOverviewInsights
-        items={items}
-        isLoading={itemsPending}
-      />
+      <InventoryOverviewInsights items={items} isLoading={itemsPending} />
 
       {/* Items table */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-foreground">
+          <h2 className="text-foreground text-sm font-semibold">
             Stock on hand
           </h2>
-          <Button asChild variant="ghost" size="sm" className="h-auto px-0 text-xs">
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="h-auto px-0 text-xs"
+          >
             <Link href="/inventory/items">View all items</Link>
           </Button>
         </div>
@@ -87,7 +94,7 @@ export function InventoryPage() {
       {/* Movements table */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-foreground">
+          <h2 className="text-foreground text-sm font-semibold">
             Recent movements
           </h2>
           <Button

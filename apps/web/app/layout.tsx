@@ -21,7 +21,6 @@ export const metadata = {
     "Atlas is the simple financial management platform that gives you a clear picture of where your money goes. Track costs, monitor performance, and make smarter decisions.",
 }
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,9 +45,7 @@ export default function RootLayout({
             showSpinner={false}
             shadow={false}
           />
-          <AppProviders>
-            {children}
-          </AppProviders>
+          <AppProviders>{children}</AppProviders>
         </ClerkProvider>
       </body>
     </html>

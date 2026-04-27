@@ -74,20 +74,19 @@ export function InventoryItemForm({
   return (
     <Card className="border-border/60">
       <CardHeader className="gap-2">
-        <CardTitle className="text-base font-semibold">
-          Item details
-        </CardTitle>
+        <CardTitle className="text-base font-semibold">Item details</CardTitle>
         <CardDescription>
           Create a stock record for a material, product, supply, or other item
           you want to track on hand.
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form
-          onSubmit={handleSubmit(onSubmitAction)}
-          className="space-y-5"
-        >
-          <InventoryFormField htmlFor="name" label="Item name" error={errors.name?.message}>
+        <form onSubmit={handleSubmit(onSubmitAction)} className="space-y-5">
+          <InventoryFormField
+            htmlFor="name"
+            label="Item name"
+            error={errors.name?.message}
+          >
             <Input
               id="name"
               placeholder="e.g. Corrugated Boxes, Cleaning Solution, Premium Rice"
@@ -95,7 +94,11 @@ export function InventoryItemForm({
             />
           </InventoryFormField>
 
-          <InventoryFormField htmlFor="sku" label="SKU" error={errors.sku?.message}>
+          <InventoryFormField
+            htmlFor="sku"
+            label="SKU"
+            error={errors.sku?.message}
+          >
             <Input
               id="sku"
               placeholder="e.g. RM-001, FG-BOX-12, SUP-045"

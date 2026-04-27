@@ -61,9 +61,9 @@ export function FarmWatchCard() {
           return (
             <div
               key={item.title}
-              className="flex items-start gap-3 rounded-xl border border-border/60 bg-muted/20 p-3"
+              className="border-border/60 bg-muted/20 flex items-start gap-3 rounded-xl border p-3"
             >
-              <div className="mt-0.5 rounded-lg bg-background p-2 text-muted-foreground">
+              <div className="bg-background text-muted-foreground mt-0.5 rounded-lg p-2">
                 <Icon className="size-4" />
               </div>
               <div className="min-w-0 flex-1">
@@ -73,7 +73,7 @@ export function FarmWatchCard() {
                     {item.status}
                   </Badge>
                 </div>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <p className="text-muted-foreground mt-1 text-sm">
                   {item.detail}
                 </p>
               </div>
@@ -81,7 +81,7 @@ export function FarmWatchCard() {
           )
         })}
 
-        <div className="flex items-center justify-between rounded-xl border border-dashed border-border/70 px-3 py-2.5 text-sm">
+        <div className="border-border/70 flex items-center justify-between rounded-xl border border-dashed px-3 py-2.5 text-sm">
           <span className="text-muted-foreground">
             3 workflow checks need attention this week
           </span>

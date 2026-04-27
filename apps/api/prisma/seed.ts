@@ -249,11 +249,9 @@ function loadDatabaseEnv() {
     return
   }
 
-  const envPath = [
-    ".env",
-    "apps/api/.env",
-    join(__dirname, "../.env"),
-  ].find((path) => existsSync(path))
+  const envPath = [".env", "apps/api/.env", join(__dirname, "../.env")].find(
+    (path) => existsSync(path)
+  )
 
   if (envPath) {
     loadEnv({ path: envPath })

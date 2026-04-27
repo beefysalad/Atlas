@@ -14,11 +14,7 @@ const ITEMS_PAGE_SIZE = 10
 
 export function InventoryItemsPage() {
   const [currentPage, setCurrentPage] = useState(1)
-  const {
-    data,
-    isPending,
-    isError,
-  } = useInventoryItems({
+  const { data, isPending, isError } = useInventoryItems({
     page: currentPage,
     pageSize: ITEMS_PAGE_SIZE,
   })
@@ -52,10 +48,10 @@ export function InventoryItemsPage() {
 
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-foreground">
+          <h2 className="text-foreground text-sm font-semibold">
             Stock on hand
           </h2>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             {totalItems} total SKUs
           </span>
         </div>

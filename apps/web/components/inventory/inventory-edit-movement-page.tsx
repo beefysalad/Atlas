@@ -9,7 +9,11 @@ import { useInventoryItems } from "@/hooks/inventory/use-inventory-items"
 import { useInventoryMovement } from "@/hooks/inventory/use-inventory-movement"
 import { useUpdateInventoryMovement } from "@/hooks/inventory/use-update-inventory-movement"
 import type { CreateMovementFormValues } from "@/lib/validations/inventory"
-import { Alert, AlertDescription, AlertTitle } from "@workspace/ui/components/alert"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@workspace/ui/components/alert"
 import {
   Card,
   CardContent,
