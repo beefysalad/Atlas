@@ -96,7 +96,12 @@ export function InventoryPage() {
             pageLabel="Low stock"
             footer={
               <div className="flex justify-end">
-                <Button asChild variant="ghost" size="sm" className="h-auto px-0 text-xs">
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="sm"
+                  className="h-auto px-0 text-xs"
+                >
                   <Link href="/inventory/items">View all items</Link>
                 </Button>
               </div>
@@ -117,7 +122,8 @@ export function InventoryPage() {
                     </EmptyMedia>
                     <EmptyTitle>Nothing urgent right now</EmptyTitle>
                     <EmptyDescription>
-                      Your tracked items are currently sitting above their reorder thresholds.
+                      Your tracked items are currently sitting above their
+                      reorder thresholds.
                     </EmptyDescription>
                   </EmptyHeader>
                 </Empty>
@@ -136,7 +142,12 @@ export function InventoryPage() {
           pageLabel="Activity"
           footer={
             <div className="flex justify-end">
-              <Button asChild variant="ghost" size="sm" className="h-auto px-0 text-xs">
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="h-auto px-0 text-xs"
+              >
                 <Link href="/inventory/movements">View all movements</Link>
               </Button>
             </div>

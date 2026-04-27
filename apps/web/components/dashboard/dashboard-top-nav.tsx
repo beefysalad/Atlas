@@ -36,7 +36,7 @@ function DashboardTopNav() {
   const pathname = usePathname()
 
   return (
-    <header className="border-b border-white/10 bg-primary text-primary-foreground">
+    <header className="bg-primary text-primary-foreground border-b border-white/10">
       <div className="flex min-h-16 items-center justify-between gap-4 px-4 md:px-6">
         <div className="flex min-w-0 items-center gap-4">
           <Link
@@ -60,13 +60,13 @@ function DashboardTopNav() {
                   />
                 ) : (
                   <NavigationMenuItem key={item.href}>
-                  <NavigationMenuLink
-                    asChild
-                    active={isDashboardNavItemActive(pathname, item.href)}
-                    className={topNavLinkClass}
-                  >
-                    <Link href={item.href}>{item.label}</Link>
-                  </NavigationMenuLink>
+                    <NavigationMenuLink
+                      asChild
+                      active={isDashboardNavItemActive(pathname, item.href)}
+                      className={topNavLinkClass}
+                    >
+                      <Link href={item.href}>{item.label}</Link>
+                    </NavigationMenuLink>
                   </NavigationMenuItem>
                 )
               )}
@@ -91,7 +91,6 @@ function DashboardTopNav() {
           />
         </div>
       </div>
-
     </header>
   )
 }

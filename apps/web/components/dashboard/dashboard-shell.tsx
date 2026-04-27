@@ -27,10 +27,13 @@ function DashboardShell({ children }: DashboardShellProps) {
 
   return (
     <TooltipProvider>
-      <div className="flex min-h-screen flex-col bg-[#e6e7e9] dark:bg-background">
+      <div className="dark:bg-background flex min-h-screen flex-col bg-[#e6e7e9]">
         <div className="lg:hidden">
-          <div className="flex min-h-16 items-center justify-between gap-4 border-b bg-background px-4">
-            <Link href="/dashboard" className="text-2xl font-semibold tracking-tight text-foreground">
+          <div className="bg-background flex min-h-16 items-center justify-between gap-4 border-b px-4">
+            <Link
+              href="/dashboard"
+              className="text-foreground text-2xl font-semibold tracking-tight"
+            >
               atlas
             </Link>
             <DashboardMobileNav />
@@ -41,7 +44,7 @@ function DashboardShell({ children }: DashboardShellProps) {
           <DashboardTopNav />
         </div>
 
-        <header className="border-b bg-background">
+        <header className="bg-background border-b">
           <div className="flex min-h-12 items-center overflow-x-auto px-4 md:min-h-14 md:px-6">
             <Breadcrumb className="min-w-0 overflow-hidden">
               <BreadcrumbList>
@@ -75,7 +78,7 @@ function DashboardShell({ children }: DashboardShellProps) {
           </div>
         </header>
 
-        <main className="min-w-0 flex-1 overflow-x-hidden bg-[#e6e7e9] dark:bg-background">
+        <main className="dark:bg-background min-w-0 flex-1 overflow-x-hidden bg-[#e6e7e9]">
           {children}
         </main>
       </div>

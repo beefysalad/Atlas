@@ -25,8 +25,9 @@ import { cn } from "@workspace/ui/lib/utils"
 function DashboardMobileNav() {
   const pathname = usePathname()
   const [expandedHref, setExpandedHref] = useState<string | null>(() => {
-    const activeItem = dashboardPrimaryNavItems.find((item) =>
-      item.children?.length && isDashboardNavItemActive(pathname, item.href)
+    const activeItem = dashboardPrimaryNavItems.find(
+      (item) =>
+        item.children?.length && isDashboardNavItemActive(pathname, item.href)
     )
 
     return activeItem?.href ?? null
@@ -38,7 +39,7 @@ function DashboardMobileNav() {
         <Button
           variant="ghost"
           size="icon"
-          className="size-9 rounded-full text-foreground hover:bg-muted lg:hidden"
+          className="text-foreground hover:bg-muted size-9 rounded-full lg:hidden"
         >
           <RiMenuLine className="size-5" />
           <span className="sr-only">Open navigation</span>
@@ -91,7 +92,7 @@ function DashboardMobileNav() {
                             className={cn(
                               "size-4 transition-transform",
                               isExpanded
-                                ? "rotate-90 text-primary"
+                                ? "text-primary rotate-90"
                                 : "text-muted-foreground"
                             )}
                           />
@@ -111,7 +112,7 @@ function DashboardMobileNav() {
                       )}
 
                       {isExpanded && item.children?.length ? (
-                        <div className="ml-5 mt-1 space-y-1 border-l pl-3">
+                        <div className="mt-1 ml-5 space-y-1 border-l pl-3">
                           {item.children.map((child) => {
                             const isChildActive = activeChildHref === child.href
 
@@ -122,7 +123,7 @@ function DashboardMobileNav() {
                                 className={cn(
                                   "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors outline-none focus-visible:ring-0",
                                   isChildActive
-                                    ? "bg-primary/[0.05] font-medium text-primary"
+                                    ? "bg-primary/[0.05] text-primary font-medium"
                                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                                 )}
                               >
@@ -139,7 +140,7 @@ function DashboardMobileNav() {
             </div>
 
             {dashboardSecondaryNavItems.length > 0 ? (
-              <div className="border-t pt-4 space-y-1">
+              <div className="space-y-1 border-t pt-4">
                 <div className="space-y-1">
                   {dashboardSecondaryNavItems.map((item) => {
                     const isActive = isDashboardNavItemActive(
@@ -182,7 +183,7 @@ function DashboardMobileNav() {
             />
             <div className="flex flex-col">
               <span className="text-sm font-medium">Account</span>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-muted-foreground text-xs">
                 Manage your settings
               </span>
             </div>

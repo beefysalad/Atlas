@@ -95,7 +95,7 @@ function ThemePresetButton({
           ? "min-h-20 min-w-[150px] shrink-0 flex-col justify-between p-3"
           : "min-h-24 flex-col justify-between p-4",
         isActive &&
-          "border-primary bg-primary/[0.03] shadow-sm ring-1 ring-primary/30"
+          "border-primary bg-primary/[0.03] ring-primary/30 shadow-sm ring-1"
       )}
     >
       {isActive ? (
