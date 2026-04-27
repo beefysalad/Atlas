@@ -1,10 +1,8 @@
 "use client"
 
-import Link from "next/link"
 import {
   RiAddLine,
   RiArrowRightUpLine,
-  RiBox3Line,
   RiContactsBook3Line,
   RiFileChartLine,
   RiNotification3Line,
@@ -13,13 +11,10 @@ import {
   RiScales3Line,
   RiSearchLine,
   RiSparklingLine,
-  RiStore2Line,
 } from "@remixicon/react"
+import Link from "next/link"
 
-import {
-  Avatar,
-  AvatarFallback,
-} from "@workspace/ui/components/avatar"
+import { Avatar, AvatarFallback } from "@workspace/ui/components/avatar"
 import { Button } from "@workspace/ui/components/button"
 import {
   NavigationMenu,
@@ -38,14 +33,14 @@ function NavigationMenuShowcase() {
       <div className="space-y-3 rounded-xl border p-4">
         <div className="space-y-1">
           <p className="text-sm font-medium">Xero-style product header</p>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             A full-width application bar with module navigation, utility
             actions, and a clean secondary workspace row.
           </p>
         </div>
 
         <div className="overflow-hidden rounded-2xl border shadow-sm">
-          <div className="bg-primary text-primary-foreground flex items-center justify-between gap-4 px-4 py-3">
+          <div className="flex items-center justify-between gap-4 bg-primary px-4 py-3 text-primary-foreground">
             <div className="flex min-w-0 items-center gap-4">
               <div className="text-2xl font-semibold tracking-tight">atlas</div>
 
@@ -67,7 +62,7 @@ function NavigationMenuShowcase() {
                   <HeaderLink label="Reporting" />
 
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="h-10 rounded-full bg-transparent px-4 text-primary-foreground hover:bg-white/10 focus:bg-white/10 data-open:bg-white/10 data-popup-open:bg-white/10">
+                    <NavigationMenuTrigger className="h-10 rounded-full bg-transparent px-4 text-primary-foreground hover:bg-white/10 focus:bg-white/10 data-popup-open:bg-white/10 data-open:bg-white/10">
                       Accounting
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="w-[680px]">
@@ -123,10 +118,10 @@ function NavigationMenuShowcase() {
             </div>
           </div>
 
-          <div className="bg-background flex flex-col gap-3 border-t px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 border-t bg-background px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <p className="text-lg font-semibold tracking-tight">Atlas</p>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-sm text-muted-foreground">
                 Inventory, purchasing, and accounting workspace
               </p>
             </div>
@@ -144,14 +139,14 @@ function NavigationMenuShowcase() {
       <div className="space-y-3 rounded-xl border p-4">
         <div className="space-y-1">
           <p className="text-sm font-medium">Section header variant</p>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             Same general feel, but more grounded for a module-level workspace
             screen.
           </p>
         </div>
 
         <div className="overflow-hidden rounded-2xl border shadow-sm">
-          <div className="bg-primary text-primary-foreground flex items-center justify-between gap-4 px-4 py-3">
+          <div className="flex items-center justify-between gap-4 bg-primary px-4 py-3 text-primary-foreground">
             <div className="flex min-w-0 items-center gap-4">
               <div className="text-xl font-semibold tracking-tight">atlas</div>
 
@@ -185,13 +180,13 @@ function NavigationMenuShowcase() {
             </div>
           </div>
 
-          <div className="bg-muted/20 border-t px-4 py-4">
+          <div className="border-t bg-muted/20 px-4 py-4">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-1">
                 <p className="text-xl font-semibold tracking-tight">
                   Products and services
                 </p>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-sm text-muted-foreground">
                   Track stocked items, service lines, and operational supplies.
                 </p>
               </div>
@@ -210,8 +205,8 @@ function NavigationMenuShowcase() {
             <div className="mt-4 rounded-2xl border bg-background p-4">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div className="flex min-w-0 flex-1 items-center gap-3 rounded-xl border bg-muted/30 px-4 py-3">
-                  <RiSearchLine className="text-muted-foreground size-4 shrink-0" />
-                  <span className="text-muted-foreground text-sm">
+                  <RiSearchLine className="size-4 shrink-0 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
                     Search products and services
                   </span>
                 </div>
@@ -301,15 +296,15 @@ function MenuPanelLink({
     <NavigationMenuLink asChild>
       <Link href={href} className="group rounded-2xl border p-4">
         <div className="flex items-start gap-3">
-          <div className="bg-primary/10 text-primary mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl border border-primary/15">
+          <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl border border-primary/15 bg-primary/10 text-primary">
             <Icon className="size-4.5" />
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <p className="text-sm font-medium">{title}</p>
-              <RiArrowRightUpLine className="text-muted-foreground size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <RiArrowRightUpLine className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
-            <p className="text-muted-foreground text-sm leading-5">
+            <p className="text-sm leading-5 text-muted-foreground">
               {description}
             </p>
           </div>

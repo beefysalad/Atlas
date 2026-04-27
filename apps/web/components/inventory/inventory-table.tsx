@@ -145,23 +145,26 @@ export function InventoryTable({
               <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
                 <div>
                   <p className="text-muted-foreground">Category</p>
-                  <p className="mt-1 truncate text-foreground">{item.category}</p>
+                  <p className="text-foreground mt-1 truncate">
+                    {item.category}
+                  </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">On hand</p>
-                  <p className="mt-1 text-foreground tabular-nums">
-                    {item.onHandQuantity.toLocaleString()} {UNIT_LABELS[item.unit]}
+                  <p className="text-foreground mt-1 tabular-nums">
+                    {item.onHandQuantity.toLocaleString()}{" "}
+                    {UNIT_LABELS[item.unit]}
                   </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Reorder point</p>
-                  <p className="mt-1 text-foreground tabular-nums">
+                  <p className="text-foreground mt-1 tabular-nums">
                     {item.reorderPoint.toLocaleString()}
                   </p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Stock value</p>
-                  <p className="mt-1 font-medium text-foreground tabular-nums">
+                  <p className="text-foreground mt-1 font-medium tabular-nums">
                     {formatCurrency(value)}
                   </p>
                 </div>

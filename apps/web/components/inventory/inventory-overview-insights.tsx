@@ -52,7 +52,7 @@ export function InventoryOverviewInsights({
   if (isLoading) {
     return (
       <section className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-        <Card className="rounded-xl bg-card shadow-sm">
+        <Card className="bg-card rounded-xl shadow-sm">
           <CardHeader>
             <Skeleton className="h-5 w-36" />
             <Skeleton className="h-4 w-56" />
@@ -61,7 +61,7 @@ export function InventoryOverviewInsights({
             <Skeleton className="h-[260px] w-full" />
           </CardContent>
         </Card>
-        <Card className="rounded-xl bg-card shadow-sm">
+        <Card className="bg-card rounded-xl shadow-sm">
           <CardHeader>
             <Skeleton className="h-5 w-32" />
             <Skeleton className="h-4 w-48" />
@@ -133,7 +133,7 @@ export function InventoryOverviewInsights({
 
   return (
     <section className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-      <Card className="rounded-xl bg-card shadow-sm">
+      <Card className="bg-card rounded-xl shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg">Category Mix</CardTitle>
           <CardDescription>
@@ -189,7 +189,7 @@ export function InventoryOverviewInsights({
                 {groupedByCategory.map((entry) => (
                   <div
                     key={entry.key}
-                    className="min-w-0 rounded-xl border bg-card p-3"
+                    className="bg-card min-w-0 rounded-xl border p-3"
                   >
                     <div className="flex items-center gap-2">
                       <span
@@ -214,7 +214,7 @@ export function InventoryOverviewInsights({
         </CardContent>
       </Card>
 
-      <Card className="rounded-xl bg-card shadow-sm">
+      <Card className="bg-card rounded-xl shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg">Quick Stats</CardTitle>
           <CardDescription>
@@ -222,19 +222,19 @@ export function InventoryOverviewInsights({
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          <div className="rounded-xl border bg-card p-4">
+          <div className="bg-card rounded-xl border p-4">
             <p className="text-muted-foreground text-xs">Tracked categories</p>
             <p className="mt-1 text-2xl font-semibold">{categoryCount}</p>
           </div>
-          <div className="rounded-xl border bg-card p-4">
+          <div className="bg-card rounded-xl border p-4">
             <p className="text-muted-foreground text-xs">Low-stock items</p>
             <p className="mt-1 text-2xl font-semibold">{lowStockCount}</p>
           </div>
-          <div className="rounded-xl border bg-card p-4">
+          <div className="bg-card rounded-xl border p-4">
             <p className="text-muted-foreground text-xs">Out-of-stock items</p>
             <p className="mt-1 text-2xl font-semibold">{outOfStockCount}</p>
           </div>
-          <div className="rounded-xl border bg-card p-4">
+          <div className="bg-card rounded-xl border p-4">
             <p className="text-muted-foreground text-xs">
               Highest value category
             </p>

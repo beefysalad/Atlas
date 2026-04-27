@@ -96,10 +96,7 @@ export function InventorySummary({
     return (
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {Array.from({ length: 4 }).map((_, i) => (
-          <Card
-            key={i}
-            className="rounded-xl bg-card shadow-sm"
-          >
+          <Card key={i} className="bg-card rounded-xl shadow-sm">
             <CardHeader className="pb-2">
               <Skeleton className="h-3 w-24" />
             </CardHeader>
@@ -123,10 +120,7 @@ export function InventorySummary({
         const showAlert = card.alert && lowStockCount > 0
 
         return (
-          <Card
-            key={card.key}
-            className="rounded-xl bg-card shadow-sm"
-          >
+          <Card key={card.key} className="bg-card rounded-xl shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
                 <span
@@ -152,13 +146,11 @@ export function InventorySummary({
                 </p>
               </div>
               <div className="border-border/60 mt-auto flex items-center justify-between gap-3 border-t pt-3">
-                <span
-                  className="text-foreground text-xs font-medium"
-                >
+                <span className="text-foreground text-xs font-medium">
                   {sub}
                 </span>
                 <span
-                  className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
+                  className={`rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] uppercase ${
                     showAlert
                       ? "bg-red-500/12 text-red-600 dark:text-red-400"
                       : "bg-primary/10 text-primary"

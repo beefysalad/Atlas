@@ -40,10 +40,7 @@ export function DashboardStats() {
         const Icon = stat.icon
 
         return (
-          <Card
-            key={stat.label}
-            className="rounded-xl bg-card shadow-sm"
-          >
+          <Card key={stat.label} className="bg-card rounded-xl shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
                 <Icon className="size-3.5" />

@@ -27,8 +27,8 @@ export function InventoryListShell({
   footer,
 }: InventoryListShellProps) {
   return (
-    <Card className="rounded-xl border-border/70 shadow-sm">
-      <CardHeader className="flex flex-col gap-3 border-b border-border/60 pb-4 sm:flex-row sm:items-start sm:justify-between">
+    <Card className="border-border/70 rounded-xl shadow-sm">
+      <CardHeader className="border-border/60 flex flex-col gap-3 border-b pb-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-1">
           <CardTitle className="text-base font-semibold">{title}</CardTitle>
           <CardDescription className="text-sm">{description}</CardDescription>
@@ -40,7 +40,9 @@ export function InventoryListShell({
         ) : null}
       </CardHeader>
       <CardContent className="p-4 md:p-5">{children}</CardContent>
-      {footer ? <div className="border-t border-border/60 p-4">{footer}</div> : null}
+      {footer ? (
+        <div className="border-border/60 border-t p-4">{footer}</div>
+      ) : null}
     </Card>
   )
 }

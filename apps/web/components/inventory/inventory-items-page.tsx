@@ -23,8 +23,10 @@ export function InventoryItemsPage() {
   const items = data?.items ?? []
   const totalPages = data?.pagination.totalPages ?? 1
   const totalItems = data?.pagination.totalItems ?? 0
-  const startItem = totalItems === 0 ? 0 : (currentPage - 1) * ITEMS_PAGE_SIZE + 1
-  const endItem = totalItems === 0 ? 0 : Math.min(currentPage * ITEMS_PAGE_SIZE, totalItems)
+  const startItem =
+    totalItems === 0 ? 0 : (currentPage - 1) * ITEMS_PAGE_SIZE + 1
+  const endItem =
+    totalItems === 0 ? 0 : Math.min(currentPage * ITEMS_PAGE_SIZE, totalItems)
 
   useEffect(() => {
     if (!data?.pagination) {
@@ -68,12 +70,12 @@ export function InventoryItemsPage() {
             />
           }
         >
-        <InventoryTable
-          items={items}
-          isLoading={isPending}
-          isError={isError}
-          showActions
-        />
+          <InventoryTable
+            items={items}
+            isLoading={isPending}
+            isError={isError}
+            showActions
+          />
         </InventoryListShell>
       </section>
     </main>

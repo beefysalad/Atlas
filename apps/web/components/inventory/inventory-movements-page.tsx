@@ -83,13 +83,13 @@ export function InventoryMovementsPage() {
             />
           }
         >
-        <InventoryMovements
-          movements={movements}
-          items={items}
-          isLoading={itemsPending || movementsPending}
-          isError={itemsError || movementsError}
-          showActions
-        />
+          <InventoryMovements
+            movements={movements}
+            items={items}
+            isLoading={itemsPending || movementsPending}
+            isError={itemsError || movementsError}
+            showActions
+          />
         </InventoryListShell>
       </section>
     </main>
