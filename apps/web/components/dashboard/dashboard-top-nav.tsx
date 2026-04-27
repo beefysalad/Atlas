@@ -15,6 +15,8 @@ import {
   isDashboardNavItemActive,
   type DashboardModuleNavItem,
 } from "@/components/dashboard/dashboard-navigation"
+import { PlaceholderTooltip } from "@/components/dashboard/dashboard-placeholder-indicator"
+import { ThemeModeToggle } from "@/components/theme/theme-mode-toggle"
 import { Button } from "@workspace/ui/components/button"
 import {
   HoverCard,
@@ -79,6 +81,10 @@ function DashboardTopNav() {
           <HeaderIconButton icon={RiSearchLine} label="Search" />
           <HeaderIconButton icon={RiQuestionLine} label="Help" />
           <HeaderIconButton icon={RiNotification3Line} label="Notifications" />
+          <ThemeModeToggle
+            className="size-10 bg-white/10 text-primary-foreground hover:bg-white/16 hover:text-primary-foreground"
+            iconClassName="text-primary-foreground"
+          />
           <UserButton
             appearance={{
               elements: {
@@ -160,13 +166,15 @@ function HeaderIconButton({
   label: string
 }) {
   return (
-    <button
-      type="button"
-      aria-label={label}
-      className="flex size-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/16"
-    >
-      <Icon className="size-4.5" />
-    </button>
+    <PlaceholderTooltip>
+      <button
+        type="button"
+        aria-label={label}
+        className="flex size-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/16"
+      >
+        <Icon className="size-4.5" />
+      </button>
+    </PlaceholderTooltip>
   )
 }
 

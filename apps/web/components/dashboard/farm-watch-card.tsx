@@ -17,6 +17,8 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card"
 
+import { SampleDataBadge } from "@/components/dashboard/dashboard-placeholder-indicator"
+
 const watchItems = [
   {
     title: "Feed supplier due",
@@ -49,8 +51,11 @@ export function FarmWatchCard() {
               The next accounting checks for sheds, feed, and branch sales.
             </CardDescription>
           </div>
-          <div className="rounded-lg bg-amber-500/10 p-2 text-amber-600 dark:text-amber-300">
-            <RiAlarmWarningLine className="size-5" />
+          <div className="flex items-center gap-2">
+            <SampleDataBadge />
+            <div className="rounded-lg bg-amber-500/10 p-2 text-amber-600 dark:text-amber-300">
+              <RiAlarmWarningLine className="size-5" />
+            </div>
           </div>
         </div>
       </CardHeader>

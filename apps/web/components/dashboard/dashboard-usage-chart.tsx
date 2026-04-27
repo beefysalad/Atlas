@@ -15,6 +15,7 @@ import {
   ChartTooltipContent,
 } from "@workspace/ui/components/chart"
 
+import { SampleDataBadge } from "@/components/dashboard/dashboard-placeholder-indicator"
 import { useUsageData } from "@/hooks/dashboard/use-usage-data"
 
 const chartConfig = {
@@ -38,6 +39,7 @@ export function DashboardUsageChart() {
             </CardDescription>
           </div>
           <div className="flex items-center gap-2">
+            <SampleDataBadge />
             <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
               <span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
               Live

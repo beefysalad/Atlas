@@ -2,6 +2,9 @@
 
 import { RiArrowRightLine } from "@remixicon/react"
 
+import {
+  PlaceholderTooltip,
+} from "@/components/dashboard/dashboard-placeholder-indicator"
 import { Button } from "@workspace/ui/components/button"
 
 import { DashboardGrowthChart } from "@/components/dashboard/dashboard-growth-chart"
@@ -38,13 +41,20 @@ function DashboardOverview() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <Button variant="outline" size="sm" className="w-full sm:w-auto">
-            Export summary
-          </Button>
-          <Button size="sm" className="w-full sm:w-auto">
-            <RiArrowRightLine data-icon="inline-start" className="rotate-180" />
-            Open ledger
-          </Button>
+          <PlaceholderTooltip>
+            <Button variant="outline" size="sm" className="w-full sm:w-auto">
+              Export summary
+            </Button>
+          </PlaceholderTooltip>
+          <PlaceholderTooltip>
+            <Button size="sm" className="w-full sm:w-auto">
+              <RiArrowRightLine
+                data-icon="inline-start"
+                className="rotate-180"
+              />
+              Open ledger
+            </Button>
+          </PlaceholderTooltip>
         </div>
       </section>
 
