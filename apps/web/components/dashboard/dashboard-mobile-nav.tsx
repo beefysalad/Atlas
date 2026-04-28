@@ -45,7 +45,10 @@ function DashboardMobileNav() {
           <span className="sr-only">Open navigation</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="flex w-[88vw] max-w-sm flex-col p-0">
+      <SheetContent
+        side="left"
+        className="flex w-[88vw] max-w-sm flex-col overflow-visible p-0"
+      >
         <SheetHeader className="border-b px-6 py-4">
           <SheetTitle className="text-xl font-semibold tracking-tight">
             atlas
@@ -55,7 +58,7 @@ function DashboardMobileNav() {
           </SheetDescription>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto">
+        <div className="min-h-0 flex-1 overflow-y-auto">
           <div className="flex flex-col gap-6 p-4">
             <div className="space-y-1">
               <div className="space-y-1">
@@ -169,7 +172,7 @@ function DashboardMobileNav() {
           </div>
         </div>
 
-        <div className="mt-auto border-t p-4">
+        <div className="relative z-50 mt-auto border-t p-4">
           <div className="flex items-center gap-3">
             <UserButton
               appearance={{
@@ -178,6 +181,11 @@ function DashboardMobileNav() {
                   userButtonAvatarBox: "size-10",
                   userButtonTrigger:
                     "size-10 rounded-full border border-border/70",
+                  userButtonPopoverCard:
+                    "z-[120] pointer-events-auto shadow-xl",
+                  userButtonPopoverActions: "pointer-events-auto",
+                  userButtonPopoverActionButton: "pointer-events-auto",
+                  userButtonPopoverFooter: "pointer-events-auto",
                 },
               }}
             />

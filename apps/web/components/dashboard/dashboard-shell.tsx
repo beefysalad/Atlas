@@ -29,10 +29,10 @@ function DashboardShell({ children }: DashboardShellProps) {
     <TooltipProvider>
       <div className="dark:bg-background flex min-h-screen flex-col bg-[#e6e7e9]">
         <div className="lg:hidden">
-          <div className="bg-background flex min-h-16 items-center justify-between gap-4 border-b px-4">
+          <div className="bg-primary text-primary-foreground flex min-h-16 items-center justify-between gap-4 border-b border-white/10 px-4">
             <Link
               href="/dashboard"
-              className="text-foreground text-2xl font-semibold tracking-tight"
+              className="text-primary-foreground text-2xl font-semibold tracking-tight"
             >
               atlas
             </Link>
