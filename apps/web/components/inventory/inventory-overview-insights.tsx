@@ -51,7 +51,7 @@ export function InventoryOverviewInsights({
 }: InventoryOverviewInsightsProps) {
   if (isLoading) {
     return (
-      <section className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+      <section>
         <Card className="bg-card rounded-xl shadow-sm">
           <CardHeader>
             <Skeleton className="h-5 w-36" />
@@ -59,17 +59,6 @@ export function InventoryOverviewInsights({
           </CardHeader>
           <CardContent>
             <Skeleton className="h-[260px] w-full" />
-          </CardContent>
-        </Card>
-        <Card className="bg-card rounded-xl shadow-sm">
-          <CardHeader>
-            <Skeleton className="h-5 w-32" />
-            <Skeleton className="h-4 w-48" />
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {Array.from({ length: 4 }).map((_, index) => (
-              <Skeleton key={index} className="h-16 w-full" />
-            ))}
           </CardContent>
         </Card>
       </section>
@@ -121,18 +110,8 @@ export function InventoryOverviewInsights({
     {}
   )
 
-  const categoryCount = new Set(activeItems.map((item) => item.category)).size
-  const lowStockCount = activeItems.filter(
-    (item) =>
-      item.onHandQuantity > 0 && item.onHandQuantity <= item.reorderPoint
-  ).length
-  const outOfStockCount = activeItems.filter(
-    (item) => item.onHandQuantity === 0
-  ).length
-  const highestValueCategory = groupedByCategory[0]
-
   return (
-    <section className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+    <section>
       <Card className="bg-card rounded-xl shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg">Category Mix</CardTitle>
@@ -211,42 +190,6 @@ export function InventoryOverviewInsights({
               </div>
             </>
           )}
-        </CardContent>
-      </Card>
-
-      <Card className="bg-card rounded-xl shadow-sm">
-        <CardHeader>
-          <CardTitle className="text-lg">Quick Stats</CardTitle>
-          <CardDescription>
-            A fast read on stock coverage and category spread.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          <div className="bg-card rounded-xl border p-4">
-            <p className="text-muted-foreground text-xs">Tracked categories</p>
-            <p className="mt-1 text-2xl font-semibold">{categoryCount}</p>
-          </div>
-          <div className="bg-card rounded-xl border p-4">
-            <p className="text-muted-foreground text-xs">Low-stock items</p>
-            <p className="mt-1 text-2xl font-semibold">{lowStockCount}</p>
-          </div>
-          <div className="bg-card rounded-xl border p-4">
-            <p className="text-muted-foreground text-xs">Out-of-stock items</p>
-            <p className="mt-1 text-2xl font-semibold">{outOfStockCount}</p>
-          </div>
-          <div className="bg-card rounded-xl border p-4">
-            <p className="text-muted-foreground text-xs">
-              Highest value category
-            </p>
-            <p className="mt-1 truncate text-base font-semibold">
-              {highestValueCategory?.category ?? "—"}
-            </p>
-            <p className="text-muted-foreground text-xs">
-              {highestValueCategory
-                ? formatCurrency(highestValueCategory.stockValue)
-                : "No inventory value yet"}
-            </p>
-          </div>
         </CardContent>
       </Card>
     </section>
