@@ -4,6 +4,7 @@ import { AuthHeader } from "@/components/auth/auth-header"
 import { HomeHero } from "@/components/home/home-hero"
 import { FeaturesSection } from "@/components/home/features-section"
 import { HowItWorksSection } from "@/components/home/how-it-works-section"
+import { PricingSection } from "@/components/home/pricing-section"
 import { CtaSection } from "@/components/home/cta-section"
 
 export function HomePage() {
@@ -14,6 +15,7 @@ export function HomePage() {
         <HomeHero />
         <FeaturesSection />
         <HowItWorksSection />
+        <PricingSection />
         <CtaSection />
 
         {/* Footer */}
